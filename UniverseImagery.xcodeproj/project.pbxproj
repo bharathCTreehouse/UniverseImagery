@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */; };
+		8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */; };
 		8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */; };
 		8E7BEC2E23BFCBCE004D14A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */; };
 		8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2F23BFCBCE004D14A2 /* ViewController.swift */; };
@@ -14,6 +16,9 @@
 		8E7BEC3523BFCBD4004D14A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BEC3423BFCBD4004D14A2 /* Assets.xcassets */; };
 		8E7BEC3823BFCBD4004D14A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E7BEC3623BFCBD4004D14A2 /* LaunchScreen.storyboard */; };
 		8E7BEC4323BFCBD4004D14A2 /* UniverseImageryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC4223BFCBD4004D14A2 /* UniverseImageryTests.swift */; };
+		8E7BEC4F23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */; };
+		8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */; };
+		8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCamera.swift; sourceTree = "<group>"; };
+		8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCameraCriteria.swift; sourceTree = "<group>"; };
 		8E7BEC2823BFCBCE004D14A2 /* UniverseImagery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseImagery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +45,9 @@
 		8E7BEC3E23BFCBD4004D14A2 /* UniverseImageryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniverseImageryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BEC4223BFCBD4004D14A2 /* UniverseImageryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryTests.swift; sourceTree = "<group>"; };
 		8E7BEC4423BFCBD4004D14A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryUrlCreator.swift; sourceTree = "<group>"; };
+		8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryEndpoint.swift; sourceTree = "<group>"; };
+		8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 		8E7BEC2A23BFCBCE004D14A2 /* UniverseImagery */ = {
 			isa = PBXGroup;
 			children = (
+				8E7BEC4D23BFD877004D14A2 /* API */,
 				8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */,
 				8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */,
 				8E7BEC2F23BFCBCE004D14A2 /* ViewController.swift */,
@@ -86,6 +97,7 @@
 				8E7BEC3423BFCBD4004D14A2 /* Assets.xcassets */,
 				8E7BEC3623BFCBD4004D14A2 /* LaunchScreen.storyboard */,
 				8E7BEC3923BFCBD4004D14A2 /* Info.plist */,
+				8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */,
 			);
 			path = UniverseImagery;
 			sourceTree = "<group>";
@@ -97,6 +109,17 @@
 				8E7BEC4423BFCBD4004D14A2 /* Info.plist */,
 			);
 			path = UniverseImageryTests;
+			sourceTree = "<group>";
+		};
+		8E7BEC4D23BFD877004D14A2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */,
+				8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */,
+				8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */,
+				8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,9 +223,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E7BEC4F23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift in Sources */,
 				8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */,
+				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
+				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
 				8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */,
+				8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */,
 				8E7BEC2E23BFCBCE004D14A2 /* SceneDelegate.swift in Sources */,
+				8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
