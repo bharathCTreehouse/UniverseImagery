@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */; };
 		8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */; };
+		8E59119623C23C850060CC6A /* UniverseRoverAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E59119523C23C850060CC6A /* UniverseRoverAPIResult.swift */; };
+		8E59119823C23E4C0060CC6A /* UniverseImageryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E59119723C23E4C0060CC6A /* UniverseImageryData.swift */; };
+		8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E59119923C2614B0060CC6A /* UniverseImageryRoverData.swift */; };
+		8E59119D23C267300060CC6A /* UniverseImageryEarthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E59119C23C267300060CC6A /* UniverseImageryEarthData.swift */; };
 		8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */; };
 		8E7BEC2E23BFCBCE004D14A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */; };
 		8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2F23BFCBCE004D14A2 /* ViewController.swift */; };
@@ -34,6 +38,10 @@
 /* Begin PBXFileReference section */
 		8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCamera.swift; sourceTree = "<group>"; };
 		8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCameraCriteria.swift; sourceTree = "<group>"; };
+		8E59119523C23C850060CC6A /* UniverseRoverAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UniverseRoverAPIResult.swift; path = ../UniverseRoverAPIResult.swift; sourceTree = "<group>"; };
+		8E59119723C23E4C0060CC6A /* UniverseImageryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryData.swift; sourceTree = "<group>"; };
+		8E59119923C2614B0060CC6A /* UniverseImageryRoverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UniverseImageryRoverData.swift; path = ../UniverseImageryRoverData.swift; sourceTree = "<group>"; };
+		8E59119C23C267300060CC6A /* UniverseImageryEarthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UniverseImageryEarthData.swift; path = ../UniverseImageryEarthData.swift; sourceTree = "<group>"; };
 		8E7BEC2823BFCBCE004D14A2 /* UniverseImagery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseImagery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +76,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E59119423C23C290060CC6A /* Rover */ = {
+			isa = PBXGroup;
+			children = (
+				8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */,
+			);
+			name = Rover;
+			sourceTree = "<group>";
+		};
+		8E59119B23C2671B0060CC6A /* Earth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Earth;
+			sourceTree = "<group>";
+		};
+		8E59119E23C2681B0060CC6A /* Rover */ = {
+			isa = PBXGroup;
+			children = (
+				8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */,
+				8E59119523C23C850060CC6A /* UniverseRoverAPIResult.swift */,
+				8E59119923C2614B0060CC6A /* UniverseImageryRoverData.swift */,
+			);
+			name = Rover;
+			sourceTree = "<group>";
+		};
+		8E59119F23C268240060CC6A /* Earth */ = {
+			isa = PBXGroup;
+			children = (
+				8E59119C23C267300060CC6A /* UniverseImageryEarthData.swift */,
+			);
+			name = Earth;
+			sourceTree = "<group>";
+		};
 		8E7BEC1F23BFCBCE004D14A2 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +130,8 @@
 		8E7BEC2A23BFCBCE004D14A2 /* UniverseImagery */ = {
 			isa = PBXGroup;
 			children = (
+				8E59119B23C2671B0060CC6A /* Earth */,
+				8E59119423C23C290060CC6A /* Rover */,
 				8E7BEC4D23BFD877004D14A2 /* API */,
 				8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */,
 				8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */,
@@ -97,7 +140,6 @@
 				8E7BEC3423BFCBD4004D14A2 /* Assets.xcassets */,
 				8E7BEC3623BFCBD4004D14A2 /* LaunchScreen.storyboard */,
 				8E7BEC3923BFCBD4004D14A2 /* Info.plist */,
-				8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */,
 			);
 			path = UniverseImagery;
 			sourceTree = "<group>";
@@ -114,9 +156,11 @@
 		8E7BEC4D23BFD877004D14A2 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				8E59119F23C268240060CC6A /* Earth */,
+				8E59119E23C2681B0060CC6A /* Rover */,
 				8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */,
 				8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */,
-				8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */,
+				8E59119723C23E4C0060CC6A /* UniverseImageryData.swift */,
 				8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */,
 			);
 			path = API;
@@ -227,10 +271,14 @@
 				8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */,
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
+				8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */,
 				8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */,
 				8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */,
 				8E7BEC2E23BFCBCE004D14A2 /* SceneDelegate.swift in Sources */,
+				8E59119823C23E4C0060CC6A /* UniverseImageryData.swift in Sources */,
 				8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */,
+				8E59119D23C267300060CC6A /* UniverseImageryEarthData.swift in Sources */,
+				8E59119623C23C850060CC6A /* UniverseRoverAPIResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let apiClient: UniverseImageAPI = UniverseImageAPI()
+
+        let roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: nil, fetchCriteria: .sol(0), cameraType: .CHEMCAM)
+        apiClient.fetchMarsRoverImagery(forEndpoint: roverEndPoint, withCompletionHandler: { (roverDataList: [UniverseImageryRoverData]?, error: Error?) -> Void in
+            
+            if let error = error {
+                print("\(error)")
+            }
+            else {
+                if let roverDataList = roverDataList {
+                    for roverData in roverDataList {
+                        print("\(roverData.id), \(roverData.url)")
+                    }
+                }
+            }
+        })
     }
 }
 
