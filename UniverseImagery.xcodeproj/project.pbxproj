@@ -17,6 +17,9 @@
 		8E60764823C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60764623C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift */; };
 		8E60764923C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E60764723C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.xib */; };
 		8E60764C23C462D100EDEC8A /* UniverseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60764B23C462D100EDEC8A /* UniverseAlertViewController.swift */; };
+		8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60764D23C4D48400EDEC8A /* UniverseArrayExtension.swift */; };
+		8E60765123C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60764F23C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift */; };
+		8E60765223C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E60765023C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib */; };
 		8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */; };
 		8E7BEC2E23BFCBCE004D14A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */; };
 		8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC2F23BFCBCE004D14A2 /* ViewController.swift */; };
@@ -50,6 +53,9 @@
 		8E60764623C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverImageCollectionViewController.swift; sourceTree = "<group>"; };
 		8E60764723C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseRoverImageCollectionViewController.xib; sourceTree = "<group>"; };
 		8E60764B23C462D100EDEC8A /* UniverseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseAlertViewController.swift; sourceTree = "<group>"; };
+		8E60764D23C4D48400EDEC8A /* UniverseArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseArrayExtension.swift; sourceTree = "<group>"; };
+		8E60764F23C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCameraSelectionViewController.swift; sourceTree = "<group>"; };
+		8E60765023C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseRoverCameraSelectionViewController.xib; sourceTree = "<group>"; };
 		8E7BEC2823BFCBCE004D14A2 /* UniverseImagery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniverseImagery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7BEC2B23BFCBCE004D14A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7BEC2D23BFCBCE004D14A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 			children = (
 				8E60764623C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift */,
 				8E60764723C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.xib */,
+				8E60764F23C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift */,
+				8E60765023C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				8E60764B23C462D100EDEC8A /* UniverseAlertViewController.swift */,
+				8E60764D23C4D48400EDEC8A /* UniverseArrayExtension.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 			files = (
 				8E60764923C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.xib in Resources */,
 				8E7BEC3823BFCBD4004D14A2 /* LaunchScreen.storyboard in Resources */,
+				8E60765223C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib in Resources */,
 				8E7BEC3523BFCBD4004D14A2 /* Assets.xcassets in Resources */,
 				8E7BEC3323BFCBCE004D14A2 /* Main.storyboard in Resources */,
 			);
@@ -308,9 +318,11 @@
 				8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */,
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
+				8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */,
 				8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */,
 				8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */,
 				8E60764423C30B0400EDEC8A /* UniverseImageOperation.swift in Sources */,
+				8E60765123C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift in Sources */,
 				8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */,
 				8E60764823C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift in Sources */,
 				8E60764C23C462D100EDEC8A /* UniverseAlertViewController.swift in Sources */,

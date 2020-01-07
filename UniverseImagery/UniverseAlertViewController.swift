@@ -12,9 +12,9 @@ import UIKit
 
 extension UIViewController {
     
-    func  showAlert(ofStyle style: UIAlertController.Style, withTitle alertTitle: String? = nil, alertMessage: String? = nil, cancelActionTitle cancelTitle: String? = nil, defaultActionTitles defaultTitles: [String], destructiveActionTitles destTitles: [String]? = nil, actionTapHandler tapHandler: ((Int) -> Void)?) {
+    func  showAlert(withTitle alertTitle: String? = nil, alertMessage: String? = nil, cancelActionTitle cancelTitle: String? = nil, defaultActionTitles defaultTitles: [String], destructiveActionTitles destTitles: [String]? = nil, actionTapHandler tapHandler: ((Int) -> Void)?) {
         
-        let alertController: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: style)
+        let alertController: UIAlertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         
         for defTitle in defaultTitles {
             let alertAction: UIAlertAction = UIAlertAction(title: defTitle, style: .default, handler: { (act: UIAlertAction) -> Void in
@@ -46,6 +46,8 @@ extension UIViewController {
             }
         }
         
+        //modalPresentationStyle = .popover
+        //alertController.popoverPresentationController?.sourceView = sourceView
         present(alertController, animated: true, completion: nil)
         
     }

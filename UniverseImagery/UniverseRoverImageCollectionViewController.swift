@@ -12,6 +12,8 @@ class UniverseRoverImageCollectionViewController: UIViewController {
     
     @IBOutlet var selectCameraButton: UIButton!
     
+   
+    
     
     init() {
         super.init(nibName: "UniverseRoverImageCollectionViewController", bundle: .main)
@@ -33,6 +35,14 @@ class UniverseRoverImageCollectionViewController: UIViewController {
     
     @IBAction func selectCameraButtonTapped(_ sender: UIButton) {
         
+        let cameraSelectionVC: UniverseRoverCameraSelectionViewController = UniverseRoverCameraSelectionViewController(withSelectionHandler: { (camera: String) -> Void in
+            
+            print(camera)
+            self.view.alpha = 1.0
+        })
+        let navController: UINavigationController = UINavigationController(rootViewController: cameraSelectionVC)
+        present(navController, animated: true, completion: nil)
+        view.alpha = 0.3
     }
     
     
