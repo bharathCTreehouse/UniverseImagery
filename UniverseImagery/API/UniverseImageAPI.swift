@@ -56,9 +56,8 @@ class UniverseImageAPI {
                             let apiResult: UniverseRoverAPIResult =  try decoder.decode(UniverseRoverAPIResult.self, from: respData)
                             handler(apiResult.photos, nil)
                         }
-                        catch (let err) {
-                            //handler(nil, UniverseImageAPIError.parsingFailure)
-                            handler(nil, err)
+                        catch {
+                            handler(nil, UniverseImageAPIError.parsingFailure)
                         }
                     }
                     else {
