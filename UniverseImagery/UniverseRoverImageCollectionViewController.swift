@@ -125,6 +125,6 @@ extension UniverseRoverImageCollectionViewController {
     
     
     @IBAction func showResultsButtonTapped(_ sender: UIButton) {
-        
+        print("showResultsButtonTapped")
     }
 }
