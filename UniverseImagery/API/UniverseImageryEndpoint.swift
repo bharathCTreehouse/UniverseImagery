@@ -11,7 +11,7 @@ import Foundation
 
 enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
     
-    case fetchRoverImage(page: Int?, fetchCriteria: UniverseRoverCameraCriteria, cameraType: UniverseRoverCamera?)
+    case fetchRoverImage(page: Int?, fetchCriteria: UniverseRoverCameraCriteria?, cameraType: UniverseRoverCamera?)
     case fetchEarthImage
     case unknown
     
@@ -40,13 +40,15 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                     allQueryItems.append(pageQItem)
                 }
                 //Fetch based on sol or earth date
-                switch criteria {
+                if criteria != nil {
+                    switch criteria! {
                     case .sol(let solValue):
                         let solQItem = URLQueryItem(name: "sol", value: "\(solValue)")
                         allQueryItems.append(solQItem)
                     case .earthDate(let dateStringValue):
                         let earthDateQItem = URLQueryItem(name: "earth_date", value: dateStringValue)
                         allQueryItems.append(earthDateQItem)
+                    }
                 }
                 //Include camera type
                 if camType != nil {

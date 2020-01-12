@@ -30,6 +30,8 @@
 		8E7BEC4F23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */; };
 		8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */; };
 		8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */; };
+		8EC73D2123CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */; };
+		8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		8E7BEC4E23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryUrlCreator.swift; sourceTree = "<group>"; };
 		8E7BEC5023BFE0FF004D14A2 /* UniverseImageryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryEndpoint.swift; sourceTree = "<group>"; };
 		8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageAPI.swift; sourceTree = "<group>"; };
+		8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryTextFieldDelegate.swift; sourceTree = "<group>"; };
+		8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryDatePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 			children = (
 				8E60764523C3AC6200EDEC8A /* Controllers */,
 				8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */,
+				8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */,
+				8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */,
 			);
 			name = Rover;
 			sourceTree = "<group>";
@@ -319,9 +325,11 @@
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
 				8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */,
+				8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */,
 				8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */,
 				8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */,
 				8E60764423C30B0400EDEC8A /* UniverseImageOperation.swift in Sources */,
+				8EC73D2123CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift in Sources */,
 				8E60765123C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.swift in Sources */,
 				8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */,
 				8E60764823C3AC9C00EDEC8A /* UniverseRoverImageCollectionViewController.swift in Sources */,

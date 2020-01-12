@@ -9,6 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UniverseRoverImageCollectionViewController" customModule="UniverseImagery" customModuleProvider="target">
             <connections>
+                <outlet property="filterCriteriaActivationSwitch" destination="yXn-AU-HvR" id="XxJ-tW-WFy"/>
+                <outlet property="filterCriteriaSegmentControl" destination="qkP-RC-k6A" id="VlU-9p-JYI"/>
+                <outlet property="filterCriteriaTextField" destination="iKt-SO-lJB" id="8WF-AI-KU4"/>
                 <outlet property="selectCameraButton" destination="BQx-Hc-alh" id="qki-3D-mAf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,6 +35,9 @@
                         <segment title="Earth date"/>
                     </segments>
                     <color key="selectedSegmentTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="filterCriteriaSegmentControlTapped:" destination="-1" eventType="valueChanged" id="tJx-iI-zAR"/>
+                    </connections>
                 </segmentedControl>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="xIq-TT-w6m">
                     <rect key="frame" x="100" y="235" width="634" height="55"/>
@@ -41,11 +47,14 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                         </textField>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yXn-AU-HvR">
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yXn-AU-HvR">
                             <rect key="frame" x="358" y="0.0" width="278" height="55"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="onTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="filterCriteriaActivationSwitchToggled:" destination="-1" eventType="valueChanged" id="1UI-Ok-69c"/>
+                            </connections>
                         </switch>
                     </subviews>
                     <constraints>
@@ -72,6 +81,9 @@
                     <state key="normal" title="SHOW RESULTS">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="showResultsButtonTapped:" destination="-1" eventType="touchUpInside" id="Jx1-Iz-0bE"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
