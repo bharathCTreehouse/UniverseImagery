@@ -12,13 +12,14 @@ import UIKit
 enum UniverseImageryTextFieldDelegateState {
     case editingDidBegin(forTxtField: UITextField)
     case returnKeyTapped(forTxtField: UITextField)
+    case editingDidEnd(forTxtField: UITextField)
 }
 
 
 class UniverseImageryTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     let stateHandler: ((UniverseImageryTextFieldDelegateState) -> Void)
-    let textField: UITextField
+    private let textField: UITextField
     
     
     init(withTextField textField: UITextField, stateHandler handler: @escaping ((UniverseImageryTextFieldDelegateState) -> Void)) {
@@ -38,6 +39,10 @@ class UniverseImageryTextFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         stateHandler(.returnKeyTapped(forTxtField: textField))
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        stateHandler(.editingDidEnd(forTxtField: textField))
     }
     
     

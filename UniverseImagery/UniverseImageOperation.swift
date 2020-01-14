@@ -16,49 +16,56 @@ enum UniverseImageOperationError: Error {
 
 class UniverseImageOperation: Operation {
     
-    let imageUrl: URL
-    let completionHandler: ((UIImage?, Error?, Bool) -> Void)
+    var imageUrl: URL
+    let completionHandler: ((UIImage?, String?, Error?, Bool) -> Void)
     let uniqueIdentifier: String?
     
     
-    init(withImageUrl url: URL, uniqueIdentifier id: String? = nil,  completionHandler handler: @escaping ((UIImage?, Error?, Bool) -> Void)) {
+    init(withImageUrl url: URL, uniqueIdentifier id: String? = nil,  completionHandler handler: @escaping ((UIImage?, String?, Error?, Bool) -> Void)) {
         
         imageUrl = url
         completionHandler = handler
         uniqueIdentifier = id
+        
+        let tempUrlString = imageUrl.absoluteString.replacingOccurrences(of: "http", with: "https")
+        imageUrl = URL(string: tempUrlString)!
     }
     
     
     override func main() {
         
         if isCancelled == true {
-            completionHandler(nil, nil, true)
+            completionHandler(nil, uniqueIdentifier, nil, true)
         }
         do {
-            let imageData: Data = try Data.init(contentsOf: imageUrl)
+            //let downloadedImg = UIImage(
+            //print(downloadedImg)
+
+            let imageData: Data = try Data.init(contentsOf: imageUrl, options: [])
+            print(imageData)
             if isCancelled == true {
-                completionHandler(nil, nil, true)
+                completionHandler(nil, uniqueIdentifier, nil, true)
             }
             if imageData.isEmpty == false {
                 let image: UIImage? = UIImage(data: imageData)
                 if let image = image {
-                    completionHandler(image, nil, false)
+                    completionHandler(image, uniqueIdentifier, nil, false)
                 }
                 else {
-                    completionHandler(image, UniverseImageOperationError.invalidImageData, false)
+                    completionHandler(image, uniqueIdentifier, UniverseImageOperationError.invalidImageData, false)
                 }
             }
             else {
                 //Data empty. Error out.
-                completionHandler(nil, UniverseImageOperationError.noImageData, false)
+                completionHandler(nil, uniqueIdentifier, UniverseImageOperationError.noImageData, false)
             }
         }
         catch (let error) {
             if isCancelled == true {
-                completionHandler(nil, nil, true)
+                completionHandler(nil, uniqueIdentifier, nil, true)
             }
             else {
-                completionHandler(nil, error, false)
+                completionHandler(nil, uniqueIdentifier, error, false)
             }
         }
     }

@@ -12,14 +12,14 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
     
     @IBOutlet var cameraListTableView: UITableView!
     
-    let selectionHandler: ((String) -> Void)
+    let selectionHandler: ((String, Int) -> Void)
     
     lazy private(set) var cameraDescList: [String] = {
         return UniverseRoverCamera.completeList.descriptionList()
     }()
     
     
-    init(withSelectionHandler handler: @escaping ((String) -> Void)) {
+    init(withSelectionHandler handler: @escaping ((String, Int) -> Void)) {
         selectionHandler = handler
         super.init(nibName: "UniverseRoverCameraSelectionViewController", bundle: .main)
     }
@@ -83,7 +83,7 @@ extension UniverseRoverCameraSelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cameraDesc: String = cameraDescList[indexPath.row]
-        selectionHandler(cameraDesc)
+        selectionHandler(cameraDesc, indexPath.row)
         dismiss(animated: true, completion: nil)
     }
 
