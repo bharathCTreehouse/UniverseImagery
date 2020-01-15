@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class UniverseImageViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class UniverseImageViewController: UIViewController {
     @IBOutlet weak var postCardTextLabel: UILabel!
 
     let universeImage: UIImage
+    private var postCardImage: UIImage? = nil
     
     
     init(withUniverseImage image: UIImage) {
@@ -50,19 +52,57 @@ class UniverseImageViewController: UIViewController {
         
         //Attach the image and send it through.
         
-        if postCardTextLabel.isHidden == false {
+        UIGraphicsBeginImageContext(universeImageView.frame.size)
+        
+        if let currentContext = UIGraphicsGetCurrentContext() {
             
-            UIGraphicsBeginImageContext(universeImageView.frame.size)
+            view.layer.render(in: currentContext)
+            postCardImage = UIGraphicsGetImageFromCurrentImageContext()
             
-            if let currentContext = UIGraphicsGetCurrentContext() {
-                
-                view.layer.render(in: currentContext)
-                let postCardImage = UIGraphicsGetImageFromCurrentImageContext()
-                let newImageVC: TempViewController = TempViewController(withImg: postCardImage!)
-                navigationController?.pushViewController(newImageVC, animated: true)
-                
+            if postCardImage != nil {
+                sendEmailWithPostCardImage()
+            }
+            else {
+                //Could not create new image with text. Show an alert.
+                let alertCont: UIAlertController = UIAlertController(title: "Could not attach image. Please try again.", message: nil, preferredStyle: .alert)
+                let okAction: UIAlertAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                alertCont.addAction(okAction)
+                present(alertCont, animated: true, completion: nil)
             }
         }
+        
+    }
+    
+    
+    func sendEmailWithPostCardImage() {
+        
+        let emailConfigurer: UniverseImageEmailConfigurer =  UniverseImageEmailConfigurer(withEmailDataSource: self, configurationCompletionHandler: { [unowned self] (mailComposeVC: MFMailComposeViewController?) -> Void in
+            
+            if mailComposeVC == nil {
+                let alertCont: UIAlertController = UIAlertController(title: "Email not configured to be sent from this device", message: nil, preferredStyle: .alert)
+                let okAction: UIAlertAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                alertCont.addAction(okAction)
+                self.present(alertCont, animated: true, completion: nil)
+            }
+            else {
+                self.present(mailComposeVC!, animated: true, completion: nil)
+            }
+            
+            }, compositionCompletionHandler: { (emailComposeState: UniverseImageEmailComposeState) -> Void in
+                
+                var stateDescription: String? = nil
+                switch emailComposeState {
+                    case .sent: stateDescription = "Email sent successfully!"
+                    case .failed(errorText: let errDesc): stateDescription = errDesc
+                    default: break
+                }
+                if stateDescription != nil {
+                    let alertCont: UIAlertController = UIAlertController(title: stateDescription, message: nil, preferredStyle: .alert)
+                    let okAction: UIAlertAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                    alertCont.addAction(okAction)
+                    self.present(alertCont, animated: true, completion: nil)
+                }
+        })
     }
     
     
@@ -105,4 +145,33 @@ class UniverseImageViewController: UIViewController {
         postCardTextLabel = nil
     }
     
+}
+
+
+extension UniverseImageViewController: UniverseImageEmailDataSource {
+    
+    var toAddresses: [String] {
+        return []
+    }
+    var ccAddresses: [String] {
+        return []
+    }
+    var bccAddresses: [String] {
+        return []
+    }
+    var emailSubject: String {
+        return "Post card from Universe Imagery"
+    }
+    var emailBodyDetail: (text: String, html: Bool) {
+        return (text: "", html: true)
+    }
+    var emailAttachments: [(data: Data, mime: String, fileName: String)] {
+        let imageData = postCardImage?.jpegData(compressionQuality: 1.0)
+        if let imageData = imageData {
+            return [(data: imageData, mime: "image/jpeg", fileName: "PostCard")]
+        }
+        else {
+            return []
+        }
+    }
 }

@@ -38,8 +38,8 @@
 		8EEC06A023CDD51200A32FE8 /* UniverseImageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEC069E23CDD51200A32FE8 /* UniverseImageCollectionViewController.xib */; };
 		8EEC06A523CE37BD00A32FE8 /* UniverseImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC06A323CE37BD00A32FE8 /* UniverseImageViewController.swift */; };
 		8EEC06A623CE37BD00A32FE8 /* UniverseImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEC06A423CE37BD00A32FE8 /* UniverseImageViewController.xib */; };
-		8EEC06A923CE4B2500A32FE8 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC06A723CE4B2500A32FE8 /* TempViewController.swift */; };
-		8EEC06AA23CE4B2500A32FE8 /* TempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEC06A823CE4B2500A32FE8 /* TempViewController.xib */; };
+		8EEC06AC23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC06AB23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift */; };
+		8EEC06AF23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC06AE23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +88,8 @@
 		8EEC069E23CDD51200A32FE8 /* UniverseImageCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseImageCollectionViewController.xib; sourceTree = "<group>"; };
 		8EEC06A323CE37BD00A32FE8 /* UniverseImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageViewController.swift; sourceTree = "<group>"; };
 		8EEC06A423CE37BD00A32FE8 /* UniverseImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseImageViewController.xib; sourceTree = "<group>"; };
-		8EEC06A723CE4B2500A32FE8 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
-		8EEC06A823CE4B2500A32FE8 /* TempViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempViewController.xib; sourceTree = "<group>"; };
+		8EEC06AB23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageEmailConfigurer.swift; sourceTree = "<group>"; };
+		8EEC06AE23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageEmailDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +246,7 @@
 		8EEC069A23CDC9A800A32FE8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8EEC06AD23CF2DE900A32FE8 /* Email */,
 				8EEC06A223CDD54700A32FE8 /* Controllers */,
 				8EEC06A123CDD53C00A32FE8 /* ViewModels */,
 			);
@@ -267,10 +268,17 @@
 				8EEC069E23CDD51200A32FE8 /* UniverseImageCollectionViewController.xib */,
 				8EEC06A323CE37BD00A32FE8 /* UniverseImageViewController.swift */,
 				8EEC06A423CE37BD00A32FE8 /* UniverseImageViewController.xib */,
-				8EEC06A723CE4B2500A32FE8 /* TempViewController.swift */,
-				8EEC06A823CE4B2500A32FE8 /* TempViewController.xib */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8EEC06AD23CF2DE900A32FE8 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				8EEC06AB23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift */,
+				8EEC06AE23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift */,
+			);
+			name = Email;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,7 +366,6 @@
 				8EEC06A023CDD51200A32FE8 /* UniverseImageCollectionViewController.xib in Resources */,
 				8E7BEC3823BFCBD4004D14A2 /* LaunchScreen.storyboard in Resources */,
 				8E60765223C4FF9B00EDEC8A /* UniverseRoverCameraSelectionViewController.xib in Resources */,
-				8EEC06AA23CE4B2500A32FE8 /* TempViewController.xib in Resources */,
 				8E7BEC3523BFCBD4004D14A2 /* Assets.xcassets in Resources */,
 				8E7BEC3323BFCBCE004D14A2 /* Main.storyboard in Resources */,
 				8EEC06A623CE37BD00A32FE8 /* UniverseImageViewController.xib in Resources */,
@@ -381,13 +388,14 @@
 			files = (
 				8E7BEC4F23BFD91A004D14A2 /* UniverseImageryUrlCreator.swift in Sources */,
 				8EEC069C23CDC9F300A32FE8 /* UniverseImageViewModel.swift in Sources */,
+				8EEC06AF23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift in Sources */,
 				8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */,
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
 				8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */,
 				8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */,
 				8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */,
-				8EEC06A923CE4B2500A32FE8 /* TempViewController.swift in Sources */,
+				8EEC06AC23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift in Sources */,
 				8E7BEC2C23BFCBCE004D14A2 /* AppDelegate.swift in Sources */,
 				8E60764423C30B0400EDEC8A /* UniverseImageOperation.swift in Sources */,
 				8EC73D2123CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift in Sources */,
@@ -572,7 +580,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = GunduApps.UniverseImagery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -590,7 +598,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = GunduApps.UniverseImagery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

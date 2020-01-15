@@ -49,6 +49,19 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         
         //setup the textfield delegate.
         configureRoverSelectionCriteriaTextFieldDelegate()
+        
+        //Add a done button on top of keypad that'll be used to dismiss it.
+        addDoneButtonOnKeyPad()
+    }
+    
+    
+    func addDoneButtonOnKeyPad() {
+        
+        let keyboardToolbar = UIToolbar(frame: .init(x: 0.0, y: 0.0, width: view.frame.size.width, height: 44.0))
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(keyPadDoneButtonTapped(_:)))
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        filterCriteriaTextField.inputAccessoryView = keyboardToolbar
     }
     
     
@@ -159,24 +172,18 @@ extension UniverseRoverCriteriaSelectionViewController {
             filterCriteria = .sol(0)
             filterCriteriaDatePicker = nil
             filterCriteriaTextField.inputView = nil
-            filterCriteriaTextField.inputAccessoryView = nil
         }
         else if sender.selectedSegmentIndex == UniverseRoverFilter.earthDate.rawValue {
             filterCriteriaDatePicker = UniverseImageryDatePicker()
             filterCriteriaTextField.placeholder = "Enter Date"
             filterCriteria = .earthDate("")
             filterCriteriaTextField.inputView = filterCriteriaDatePicker
-            
-            let keyboardToolbar = UIToolbar(frame: .init(x: 0.0, y: 0.0, width: view.frame.size.width, height: 50.0))
-            let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDoneButtonTapped(_:)))
-            keyboardToolbar.items = [flexBarButton, doneBarButton]
-            filterCriteriaTextField.inputAccessoryView = keyboardToolbar
         }
+        
     }
     
     
-    @objc func datePickerDoneButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func keyPadDoneButtonTapped(_ sender: UIBarButtonItem) {
         view.endEditing(true)
     }
     
