@@ -21,6 +21,8 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     @IBOutlet private weak var filterCriteriaSegmentControl: UISegmentedControl!
     @IBOutlet private weak var filterCriteriaActivationSwitch: UISwitch!
     @IBOutlet private weak var filterCriteriaTextField: UITextField!
+    @IBOutlet private weak var cameraTypeLabel: UILabel!
+
     
     //criteria to search/filter (to be used for the API)
     private(set) var filterCriteria: UniverseRoverCameraCriteria? = nil
@@ -136,6 +138,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         filterCriteriaDatePicker = nil
         cameraType = nil
         filterCriteria = nil
+        cameraTypeLabel = nil
     }
     
 }
@@ -147,11 +150,19 @@ extension UniverseRoverCriteriaSelectionViewController {
     
     @IBAction func selectCameraButtonTapped(_ sender: UIButton) {
         
-        let cameraSelectionVC: UniverseRoverCameraSelectionViewController = UniverseRoverCameraSelectionViewController(withSelectionHandler: { [unowned self] (camera: String, index: Int) -> Void in
+        let cameraSelectionVC: UniverseRoverCameraSelectionViewController = UniverseRoverCameraSelectionViewController(withSelectionHandler: { [unowned self] (camera: String, index: Int?, selectAll: Bool) -> Void in
             
             self.view.alpha = 1.0
-            self.cameraType = UniverseRoverCamera.completeList[index]
+
+            if selectAll == true {
+                self.cameraType = nil
+            }
+            else if let index = index {
+                self.cameraType = UniverseRoverCamera.completeList[index]
+            }
+            self.cameraTypeLabel.text = camera
         })
+        
         let navController: UINavigationController = UINavigationController(rootViewController: cameraSelectionVC)
         present(navController, animated: true, completion: nil)
         view.alpha = 0.3

@@ -12,14 +12,14 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
     
     @IBOutlet var cameraListTableView: UITableView!
     
-    let selectionHandler: ((String, Int) -> Void)
+    let selectionHandler: ((String, Int?, Bool) -> Void)
     
     lazy private(set) var cameraDescList: [String] = {
         return UniverseRoverCamera.completeList.descriptionList()
     }()
     
     
-    init(withSelectionHandler handler: @escaping ((String, Int) -> Void)) {
+    init(withSelectionHandler handler: @escaping ((String, Int?, Bool) -> Void)) {
         selectionHandler = handler
         super.init(nibName: "UniverseRoverCameraSelectionViewController", bundle: .main)
     }
@@ -33,6 +33,7 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCameraListTableView()
+        configureSelectAllButton()
         navigationItem.title = "SELECT CAMERA"
     }
     
@@ -44,6 +45,23 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
         cameraListTableView.delegate = self
         cameraListTableView.estimatedRowHeight = 60.0
         cameraListTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    
+    func configureSelectAllButton() {
+        
+        let selectAllButton: UIButton = UIButton(type: .system)
+        selectAllButton.frame = .init(x: 0.0, y: 0.0, width: view.frame.size.width, height: 50.0)
+        selectAllButton.setTitle("Select All", for: .normal)
+        selectAllButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 19.0)
+        selectAllButton.addTarget(self, action: #selector(selectAllButtonTapped(_:)), for: .touchUpInside)
+        cameraListTableView.tableFooterView = selectAllButton
+    }
+    
+    
+    @objc func selectAllButtonTapped(_ sender: UIButton) {
+        selectionHandler("All", nil, true)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -66,8 +84,9 @@ extension UniverseRoverCameraSelectionViewController: UITableViewDataSource {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cameraCell", for: indexPath)
         let cameraDesc: String = cameraDescList[indexPath.row]
         cell.textLabel!.textAlignment = .center
-        cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 22.0)
+        cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 19.0)
         cell.textLabel!.text = cameraDesc
+        cell.textLabel!.numberOfLines = 0
         
         return cell
         
@@ -76,15 +95,12 @@ extension UniverseRoverCameraSelectionViewController: UITableViewDataSource {
 }
 
 
-
 extension UniverseRoverCameraSelectionViewController: UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cameraDesc: String = cameraDescList[indexPath.row]
-        selectionHandler(cameraDesc, indexPath.row)
+        selectionHandler(cameraDesc, indexPath.row, false)
         dismiss(animated: true, completion: nil)
     }
-
 }

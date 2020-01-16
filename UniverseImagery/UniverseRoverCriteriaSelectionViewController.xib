@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UniverseRoverCriteriaSelectionViewController" customModule="UniverseImagery" customModuleProvider="target">
             <connections>
+                <outlet property="cameraTypeLabel" destination="9CT-Au-aOl" id="M9e-0v-rNc"/>
                 <outlet property="filterCriteriaActivationSwitch" destination="yXn-AU-HvR" id="XxJ-tW-WFy"/>
                 <outlet property="filterCriteriaSegmentControl" destination="qkP-RC-k6A" id="VlU-9p-JYI"/>
                 <outlet property="filterCriteriaTextField" destination="iKt-SO-lJB" id="8WF-AI-KU4"/>
@@ -82,6 +83,12 @@
                         <action selector="showResultsButtonTapped:" destination="-1" eventType="touchUpInside" id="n4G-KM-aDD"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CT-Au-aOl">
+                    <rect key="frame" x="25" y="340" width="364" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -89,10 +96,13 @@
                 <constraint firstItem="xIq-TT-w6m" firstAttribute="top" secondItem="qkP-RC-k6A" secondAttribute="bottom" constant="50" id="5Vi-4N-spB"/>
                 <constraint firstItem="qkP-RC-k6A" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="BTd-dW-vXf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xIq-TT-w6m" secondAttribute="trailing" constant="25" id="Cgw-Rk-R7z"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9CT-Au-aOl" secondAttribute="trailing" constant="25" id="HtB-EC-mCn"/>
                 <constraint firstItem="xIq-TT-w6m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="Mn4-hh-Tq3"/>
                 <constraint firstItem="qkP-RC-k6A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="P6V-hW-2Ta"/>
+                <constraint firstItem="9CT-Au-aOl" firstAttribute="top" secondItem="BQx-Hc-alh" secondAttribute="bottom" constant="16" id="RmE-hf-24g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qkP-RC-k6A" secondAttribute="trailing" constant="25" id="VBE-VI-Tmq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N9z-Tu-DZ6" secondAttribute="trailing" constant="25" id="ee7-gb-Yeu"/>
+                <constraint firstItem="9CT-Au-aOl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iMx-Za-HlJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="N9z-Tu-DZ6" secondAttribute="bottom" constant="60" id="nnr-D2-NAS"/>
                 <constraint firstItem="BQx-Hc-alh" firstAttribute="top" secondItem="xIq-TT-w6m" secondAttribute="bottom" constant="50" id="rCC-GG-gQN"/>
                 <constraint firstItem="N9z-Tu-DZ6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="sYQ-Pm-EMY"/>
