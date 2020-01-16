@@ -28,6 +28,8 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     
     private var filterCriteriaDatePicker: UniverseImageryDatePicker? = nil
     private var roverSelectionCriteriaTextFieldDelegate: UniverseImageryTextFieldDelegate? = nil
+    
+    var pageCount: Int = 1
 
 
 
@@ -52,6 +54,13 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         
         //Add a done button on top of keypad that'll be used to dismiss it.
         addDoneButtonOnKeyPad()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        pageCount = 1
     }
     
     
@@ -189,17 +198,24 @@ extension UniverseRoverCriteriaSelectionViewController {
     
     
     @IBAction func showResultsButtonTapped(_ sender: UIButton) {
+        fetchRoverImageData()
+    }
+    
+    
+    func fetchRoverImageData() {
         
         let apiClient: UniverseImageAPI = UniverseImageAPI()
         
-        let roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: nil, fetchCriteria: filterCriteria, cameraType: cameraType)
+        let roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: pageCount, fetchCriteria: filterCriteria, cameraType: cameraType)
         
         apiClient.fetchMarsRoverImagery(forEndpoint: roverEndPoint, withCompletionHandler: { [unowned self] (roverDataList: [UniverseImageryRoverData]?, error: Error?) -> Void in
             
             DispatchQueue.main.async {
                 
                 if let error = error {
-                    print("\(error)")
+                    
+                    self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+
                 }
                 else {
                     
@@ -210,8 +226,44 @@ extension UniverseRoverCriteriaSelectionViewController {
                             return UniverseImageViewModel(withImageData: roverData)
                         })
                         
-                        let imageCollectionVC: UniverseImageCollectionViewController = UniverseImageCollectionViewController(withImageViewModels: roverImageViewModels)
-                        self.navigationController?.pushViewController(imageCollectionVC, animated: true)
+                        if roverImageViewModels.isEmpty == false {
+                            
+                            //We have received data matching the given search criteria.
+                            
+                            //Increment the page count, so that we can fetch the next page if user wishes to see more images matching the criteria he has selected.
+                            self.pageCount = self.pageCount + 1
+                            
+                            var imageCollectionVC: UniverseImageCollectionViewController? = self.navigationController?.topViewController as? UniverseImageCollectionViewController
+                            
+                            if imageCollectionVC == nil {
+                                
+                                imageCollectionVC  = UniverseImageCollectionViewController(withImageViewModels: roverImageViewModels, loadMoreTapHandler: { () -> Void in
+                                    
+                                    self.fetchRoverImageData()
+                                })
+                            self.navigationController?.pushViewController(imageCollectionVC!, animated: true)
+                                
+                            }
+                            else {
+                                imageCollectionVC?.addImageViewModels(fromList: roverImageViewModels)
+                            }
+                        }
+                        else {
+                            if self.pageCount == 1 {
+                                //Display alert only when fetching the first page of the given criteria
+                                //No matching data found. Show an alert.
+                                self.showAlert(withTitle: "No data matching the given search/filter criteria found. Refine the search criteria and try again", alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+                            }
+                            else {
+                                //Have reached the end of search results i.e data from all pages have been fetched.
+                                
+                                let imageCollectionVC: UniverseImageCollectionViewController = self.navigationController?.topViewController as! UniverseImageCollectionViewController
+                                imageCollectionVC.addImageViewModels(fromList: [])
+
+                            }
+                            
+                        }
+                        
                     }
                 }
             }

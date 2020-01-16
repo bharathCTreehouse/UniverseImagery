@@ -9,6 +9,7 @@
 import Foundation
 
 enum UniverseImageAPIError: Error {
+    
     case invalidResponse
     case noResponse
     case invalidData
@@ -16,6 +17,19 @@ enum UniverseImageAPIError: Error {
     case unknown
     case invalidURL
     case parsingFailure
+    
+    var localizedDescription: String {
+        
+        switch self {
+            case .invalidResponse: return "Invalid response. Please try again"
+            case .noResponse: return "Failed to receive reponse in time. Please try again after a while"
+            case .invalidData: return "Unreadable data received"
+            case .noData: return "No data received"
+            case .invalidURL: return "Could not connect to the server. Please try again after some time"
+            case .parsingFailure: return "Unreadable data received"
+            default: return "An unknown error has occurred"
+        }
+    }
 }
 
 

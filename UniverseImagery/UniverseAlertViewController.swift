@@ -46,8 +46,6 @@ extension UIViewController {
             }
         }
         
-        //modalPresentationStyle = .popover
-        //alertController.popoverPresentationController?.sourceView = sourceView
         present(alertController, animated: true, completion: nil)
         
     }

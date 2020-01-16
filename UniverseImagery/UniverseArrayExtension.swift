@@ -20,3 +20,16 @@ extension Array where Element: CustomStringConvertible {
         return list
     }
 }
+
+extension Array where Element == UniverseImageViewModel {
+    
+    func imageViewModelsWithoutImage() -> [UniverseImageViewModel] {
+        
+        let filteredList: [UniverseImageViewModel] = self.filter({ (vm: UniverseImageViewModel) -> Bool in
+            return vm.image == nil
+        })
+        
+        return filteredList
+    }
+    
+}

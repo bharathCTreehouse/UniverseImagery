@@ -12,22 +12,51 @@ private let reuseIdentifier = "Cell"
 
 class UniverseImageCollectionViewController: UICollectionViewController {
     
-    var imageViewModels: [UniverseImageViewModel] {
+    private(set) var imageViewModels: [UniverseImageViewModel] {
+        
+        willSet(oldValue) {
+            
+        }
+        
         didSet {
             
+            let noOfNewItemsAdded: Int = imageViewModels.count - oldValue.count
+            var newIndexPaths: [IndexPath] = []
+            
+            if noOfNewItemsAdded > 0 {
+                //There has been an addition of new image view models.
+                
+                for (index, _) in imageViewModels.enumerated() {
+                    
+                    if index >= oldValue.count {
+                        //'index' is now an index that is newly appended. So add it into a list of indexPaths that can be used to insert new collection items.
+                        let idxPath: IndexPath = IndexPath.init(row: index, section: 0)
+                        newIndexPaths.append(idxPath)
+                        if newIndexPaths.count == noOfNewItemsAdded {
+                            break
+                        }
+                    }
+                }
+                
+            }
             if imageViewModels.isEmpty == false {
+                collectionView.insertItems(at: newIndexPaths)
                 downloadImages()
             }
         }
     }
     
     lazy private var imageDownloadingQueue: OperationQueue = {
-       return OperationQueue()
+        return OperationQueue()
     }()
     
+    let loadMoreHandler: (() -> Void)
     
-    required init(withImageViewModels viewModels: [UniverseImageViewModel]) {
+    
+    required init(withImageViewModels viewModels: [UniverseImageViewModel], loadMoreTapHandler: @escaping () -> Void ) {
+        
         imageViewModels = viewModels
+        loadMoreHandler = loadMoreTapHandler
         super.init(nibName: "UniverseImageCollectionViewController", bundle: .main)
     }
     
@@ -36,17 +65,32 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     }
     
     
+    func addImageViewModels(fromList list: [UniverseImageViewModel]) {
+        
+        updateLoadMoreViewState(to: .finished)
+        if list.isEmpty == false {
+            let filteredList: [UniverseImageViewModel] = list.imageViewModelsWithoutImage()
+            imageViewModels.append(contentsOf: filteredList)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Register cell classes
         collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView!.register(UniverseImageryLoadMoreButtonCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView")
-        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 44.0)
-
+        
+        if imageViewModels.isEmpty == false {
+            
+            collectionView!.register(UniverseImageryLoadMoreButtonCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView")
+            
+            (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 60.0)
+        }
+        
         navigationItem.title = "IMAGES"
         
     }
@@ -54,21 +98,18 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        filterOutViewModelsWithoutImages()
-    }
-    
-    
-    func filterOutViewModelsWithoutImages() {
-        
-        imageViewModels = imageViewModels.filter({ (vm: UniverseImageViewModel) -> Bool in
-            return vm.image == nil
-        })
+        imageViewModels = imageViewModels.imageViewModelsWithoutImage()
     }
     
     
     func downloadImages() {
         
         for (index, imageViewModel) in imageViewModels.enumerated() {
+            
+            if imageViewModel.image != nil {
+                //Image already downloaded for this view model. So continue the loop.
+                continue
+            }
             
             let url: URL = URL(string: imageViewModel.imageData.url)!
             
@@ -85,8 +126,10 @@ class UniverseImageCollectionViewController: UICollectionViewController {
                         
                         DispatchQueue.main.async {
                             
-                            let cell = self.collectionView.cellForItem(at: IndexPath.init(row: index, section: 0))
+                            let idxPath: IndexPath = IndexPath.init(row: index, section: 0)
+                            let cell = self.collectionView.cellForItem(at: idxPath)
                             (cell?.contentView.viewWithTag(10) as? UIImageView)?.image = img
+                            
                         }
                     }
                 }
@@ -176,6 +219,15 @@ extension UniverseImageCollectionViewController: UniverseImageryLoadMoreButtonCo
     
     
     func reactToLoadMoreButtonTap() {
-        print("reactToLoadMoreButtonTap")
+        updateLoadMoreViewState(to: .inProgress)
+        loadMoreHandler()
+    }
+    
+    
+    func updateLoadMoreViewState(to state: UniverseImageryLoadMoreViewState) {
+        
+        let loadMoreFooterView: UniverseImageryLoadMoreButtonCollectionView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath.init(row: 0, section: 0)) as! UniverseImageryLoadMoreButtonCollectionView
+        
+        loadMoreFooterView.changeCurrentState(to: state)
     }
 }

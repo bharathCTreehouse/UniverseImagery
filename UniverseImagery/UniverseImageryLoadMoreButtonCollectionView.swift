@@ -21,7 +21,20 @@ protocol UniverseImageryLoadMoreButtonCollectionViewDelegate: class {
 
 class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
     
-    var currentState: UniverseImageryLoadMoreViewState = .notStarted
+    private var currentState: UniverseImageryLoadMoreViewState = .notStarted {
+        
+        didSet {
+            if currentState == .inProgress {
+                activityIndicatorView.startAnimating()
+                loadMoreButton.isEnabled = false
+            }
+            else {
+                activityIndicatorView.stopAnimating()
+                loadMoreButton.isEnabled = true
+            }
+        }
+    }
+    
     var activityIndicatorView: UIActivityIndicatorView! = nil
     var loadMoreButton: UIButton! = nil
     weak var viewDelegate: UniverseImageryLoadMoreButtonCollectionViewDelegate? = nil
@@ -30,11 +43,11 @@ class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
    
     override init(frame: CGRect) {
         
-        currentState = .notStarted
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.lightGray
+        backgroundColor = UIColor.lightText
         setup()
+        changeCurrentState(to: .notStarted)
     }
     
     
@@ -43,19 +56,21 @@ class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
     }
     
     
-    func setup() {
-        activityIndicatorView =  UIActivityIndicatorView(style: .medium)
+    private func setup() {
+        
+        activityIndicatorView =  UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(activityIndicatorView)
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         activityIndicatorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-        activityIndicatorView.startAnimating()
         
         loadMoreButton = UIButton(type: .system)
         loadMoreButton.addTarget(self, action: #selector(loadMoreButtonTapped(_:)), for: .touchUpInside)
-        loadMoreButton.setTitle("Load more", for: .normal)
+        loadMoreButton.setTitle("LOAD MORE", for: .normal)
         loadMoreButton.titleLabel?.textAlignment = .center
+        loadMoreButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+        loadMoreButton.setTitleColor(UIColor.systemBlue, for: .normal)
         loadMoreButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(loadMoreButton)
         loadMoreButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -68,4 +83,8 @@ class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
         viewDelegate?.reactToLoadMoreButtonTap()
     }
     
+    
+    func changeCurrentState(to newState: UniverseImageryLoadMoreViewState) {
+        currentState = newState
+    }
 }
