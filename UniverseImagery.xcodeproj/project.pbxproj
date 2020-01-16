@@ -32,7 +32,7 @@
 		8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */; };
 		8EC73D2123CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */; };
 		8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */; };
-		8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonView.swift */; };
+		8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */; };
 		8EEC069923CDC17100A32FE8 /* UniverseRoverImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC069823CDC17100A32FE8 /* UniverseRoverImageViewModel.swift */; };
 		8EEC069C23CDC9F300A32FE8 /* UniverseImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC069B23CDC9F300A32FE8 /* UniverseImageViewModel.swift */; };
 		8EEC069F23CDD51200A32FE8 /* UniverseImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEC069D23CDD51200A32FE8 /* UniverseImageCollectionViewController.swift */; };
@@ -83,7 +83,7 @@
 		8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageAPI.swift; sourceTree = "<group>"; };
 		8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryTextFieldDelegate.swift; sourceTree = "<group>"; };
 		8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryDatePicker.swift; sourceTree = "<group>"; };
-		8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryLoadMoreButtonView.swift; sourceTree = "<group>"; };
+		8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryLoadMoreButtonCollectionView.swift; sourceTree = "<group>"; };
 		8EEC069823CDC17100A32FE8 /* UniverseRoverImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverImageViewModel.swift; sourceTree = "<group>"; };
 		8EEC069B23CDC9F300A32FE8 /* UniverseImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageViewModel.swift; sourceTree = "<group>"; };
 		8EEC069D23CDD51200A32FE8 /* UniverseImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageCollectionViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		8ECA71E523D03991004DC5CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonView.swift */,
+				8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
 				8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */,
-				8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonView.swift in Sources */,
+				8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift in Sources */,
 				8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */,
 				8E59119A23C2614B0060CC6A /* UniverseImageryRoverData.swift in Sources */,
 				8EEC06AC23CF292800A32FE8 /* UniverseImageEmailConfigurer.swift in Sources */,

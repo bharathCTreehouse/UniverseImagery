@@ -43,19 +43,18 @@ class UniverseImageCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.register(UniverseImageryLoadMoreButtonCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView")
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 44.0)
+
         navigationItem.title = "IMAGES"
+        
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         filterOutViewModelsWithoutImages()
-    }
-    
-    
-    func configureLoadMoreView() {
-        //self.collectionView.supp
     }
     
     
@@ -95,14 +94,6 @@ class UniverseImageCollectionViewController: UICollectionViewController {
             imageDownloadingQueue.addOperation(imgOperation)
         }
     }
-
-
-
-   
-
-
-    
-    
 }
 
 
@@ -111,7 +102,6 @@ extension UniverseImageCollectionViewController {
     
     // MARK: UICollectionViewDataSource
 
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -143,6 +133,18 @@ extension UniverseImageCollectionViewController {
         imgView!.image = imageViewModel.image
         return cell
     }
+
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let loadMoreView: UniverseImageryLoadMoreButtonCollectionView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView", for: indexPath) as! UniverseImageryLoadMoreButtonCollectionView
+        
+        loadMoreView.viewDelegate = self
+        
+        return loadMoreView
+
+    }
+
 }
 
 
@@ -150,13 +152,6 @@ extension UniverseImageCollectionViewController {
     
     // MARK: UICollectionViewDelegate
     
-    
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    /*override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }*/
-    
-
     
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -173,5 +168,14 @@ extension UniverseImageCollectionViewController {
             let navController: UINavigationController = UINavigationController(rootViewController: imageVC)
             present(navController, animated: true, completion: nil)
         }
+    }
+}
+
+
+extension UniverseImageCollectionViewController: UniverseImageryLoadMoreButtonCollectionViewDelegate {
+    
+    
+    func reactToLoadMoreButtonTap() {
+        print("reactToLoadMoreButtonTap")
     }
 }
