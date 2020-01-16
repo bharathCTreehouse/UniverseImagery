@@ -13,6 +13,7 @@ class UniverseImageViewController: UIViewController {
     
     @IBOutlet weak var universeImageView: UIImageView!
     @IBOutlet weak var postCardTextLabel: UILabel!
+    var emailConfigurer: UniverseImageEmailConfigurer! = nil
 
     let universeImage: UIImage
     private var postCardImage: UIImage? = nil
@@ -76,7 +77,7 @@ class UniverseImageViewController: UIViewController {
     
     func sendEmailWithPostCardImage() {
         
-        let emailConfigurer: UniverseImageEmailConfigurer =  UniverseImageEmailConfigurer(withEmailDataSource: self, configurationCompletionHandler: { [unowned self] (mailComposeVC: MFMailComposeViewController?) -> Void in
+        emailConfigurer =  UniverseImageEmailConfigurer(withEmailDataSource: self, configurationCompletionHandler: { [unowned self] (mailComposeVC: MFMailComposeViewController?) -> Void in
             
             if mailComposeVC == nil {
                 let alertCont: UIAlertController = UIAlertController(title: "Email not configured to be sent from this device", message: nil, preferredStyle: .alert)
@@ -92,9 +93,9 @@ class UniverseImageViewController: UIViewController {
                 
                 var stateDescription: String? = nil
                 switch emailComposeState {
-                    case .sent: stateDescription = "Email sent successfully!"
-                    case .failed(errorText: let errDesc): stateDescription = errDesc
-                    default: break
+                case .sent: stateDescription = "Email sent successfully!"
+                case .failed(errorText: let errDesc): stateDescription = errDesc
+                default: break
                 }
                 if stateDescription != nil {
                     let alertCont: UIAlertController = UIAlertController(title: stateDescription, message: nil, preferredStyle: .alert)
@@ -143,6 +144,7 @@ class UniverseImageViewController: UIViewController {
     deinit {
         universeImageView = nil
         postCardTextLabel = nil
+        emailConfigurer = nil
     }
     
 }

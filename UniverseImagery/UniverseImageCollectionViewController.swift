@@ -54,6 +54,11 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     }
     
     
+    func configureLoadMoreView() {
+        //self.collectionView.supp
+    }
+    
+    
     func filterOutViewModelsWithoutImages() {
         
         imageViewModels = imageViewModels.filter({ (vm: UniverseImageViewModel) -> Bool in
