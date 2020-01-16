@@ -21,10 +21,10 @@ class UniverseImageEmailConfigurer: NSObject, MFMailComposeViewControllerDelegat
     
     let emailDataSource: UniverseImageEmailDataSource
     let emailConfigurationCompletionHandler: ((MFMailComposeViewController?) -> Void)
-    let emailCompositionCompletionHandler: ((UniverseImageEmailComposeState) -> Void)
+    let emailCompositionCompletionHandler: ((UniverseImageEmailComposeState, MFMailComposeViewController) -> Void)
 
     
-    required init(withEmailDataSource dataSource: UniverseImageEmailDataSource, configurationCompletionHandler handler:  @escaping ((MFMailComposeViewController?) -> Void), compositionCompletionHandler compoHandler: @escaping ((UniverseImageEmailComposeState) -> Void)) {
+    required init(withEmailDataSource dataSource: UniverseImageEmailDataSource, configurationCompletionHandler handler:  @escaping ((MFMailComposeViewController?) -> Void), compositionCompletionHandler compoHandler: @escaping ((UniverseImageEmailComposeState, MFMailComposeViewController) -> Void)) {
         
         emailDataSource = dataSource
         emailCompositionCompletionHandler = compoHandler
@@ -37,17 +37,17 @@ class UniverseImageEmailConfigurer: NSObject, MFMailComposeViewControllerDelegat
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
         if let error = error {
-            emailCompositionCompletionHandler(.failed(errorText: error.localizedDescription))
+            emailCompositionCompletionHandler(.failed(errorText: error.localizedDescription), controller)
         }
         else {
             if result == .cancelled {
-                emailCompositionCompletionHandler(.cancelled)
+                emailCompositionCompletionHandler(.cancelled, controller)
             }
             else if result == .failed {
-                emailCompositionCompletionHandler(.failed(errorText: nil))
+                emailCompositionCompletionHandler(.failed(errorText: nil), controller)
             }
             else if result == .sent {
-                emailCompositionCompletionHandler(.sent)
+                emailCompositionCompletionHandler(.sent, controller)
             }
         }
     }

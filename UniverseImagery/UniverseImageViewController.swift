@@ -89,13 +89,15 @@ class UniverseImageViewController: UIViewController {
                 self.present(mailComposeVC!, animated: true, completion: nil)
             }
             
-            }, compositionCompletionHandler: { (emailComposeState: UniverseImageEmailComposeState) -> Void in
+            }, compositionCompletionHandler: { (emailComposeState: UniverseImageEmailComposeState, mailController: MFMailComposeViewController) -> Void in
+                
+                mailController.dismiss(animated: true, completion: nil)
                 
                 var stateDescription: String? = nil
                 switch emailComposeState {
-                case .sent: stateDescription = "Email sent successfully!"
-                case .failed(errorText: let errDesc): stateDescription = errDesc
-                default: break
+                    case .sent: stateDescription = "Email sent successfully!"
+                    case .failed(errorText: let errDesc): stateDescription = errDesc
+                    default: break
                 }
                 if stateDescription != nil {
                     let alertCont: UIAlertController = UIAlertController(title: stateDescription, message: nil, preferredStyle: .alert)
@@ -165,7 +167,7 @@ extension UniverseImageViewController: UniverseImageEmailDataSource {
         return "Post card from Universe Imagery"
     }
     var emailBodyDetail: (text: String, html: Bool) {
-        return (text: "", html: true)
+        return (text: "Greetings.  Enjoy the card dude.", html: true)
     }
     var emailAttachments: [(data: Data, mime: String, fileName: String)] {
         let imageData = postCardImage?.jpegData(compressionQuality: 1.0)
