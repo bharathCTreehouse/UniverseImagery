@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,7 +92,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-0g-eQD">
-                    <rect key="frame" x="182" y="443" width="50" height="50"/>
+                    <rect key="frame" x="182" y="393" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="iEq-dB-d1i"/>
                         <constraint firstAttribute="height" constant="50" id="luC-tg-7n9"/>
@@ -111,8 +111,8 @@
                 <constraint firstItem="qkP-RC-k6A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="P6V-hW-2Ta"/>
                 <constraint firstItem="9CT-Au-aOl" firstAttribute="top" secondItem="BQx-Hc-alh" secondAttribute="bottom" constant="16" id="RmE-hf-24g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qkP-RC-k6A" secondAttribute="trailing" constant="25" id="VBE-VI-Tmq"/>
+                <constraint firstItem="EVj-0g-eQD" firstAttribute="top" secondItem="9CT-Au-aOl" secondAttribute="bottom" constant="30" id="YSv-bV-dvf"/>
                 <constraint firstItem="EVj-0g-eQD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c1P-ac-TvP"/>
-                <constraint firstItem="EVj-0g-eQD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="20" id="cvy-B5-VID"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N9z-Tu-DZ6" secondAttribute="trailing" constant="25" id="ee7-gb-Yeu"/>
                 <constraint firstItem="9CT-Au-aOl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iMx-Za-HlJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="N9z-Tu-DZ6" secondAttribute="bottom" constant="60" id="nnr-D2-NAS"/>

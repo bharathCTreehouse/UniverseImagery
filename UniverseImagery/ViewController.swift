@@ -24,8 +24,14 @@ class ViewController: UIViewController {
     
     
     @IBAction func marsImageButtonTapped(_ sender: UIButton) {
-        let roverImageController: UniverseRoverCriteriaSelectionViewController = UniverseRoverCriteriaSelectionViewController()
-        navigationController?.pushViewController(roverImageController, animated: true)
+        let roverCriteriaSelectionController: UniverseRoverCriteriaSelectionViewController = UniverseRoverCriteriaSelectionViewController()
+        navigationController?.pushViewController(roverCriteriaSelectionController, animated: true)
+    }
+    
+    
+    @IBAction func earthImageButtonTapped(_ sender: UIButton) {
+        let earthCriteriaSelectionController: UniverseEarthCriteriaSelectionViewController = UniverseEarthCriteriaSelectionViewController()
+        navigationController?.pushViewController(earthCriteriaSelectionController, animated: true)
     }
     
     

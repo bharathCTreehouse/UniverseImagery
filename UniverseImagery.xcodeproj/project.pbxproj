@@ -134,7 +134,6 @@
 				8E60764523C3AC6200EDEC8A /* Controllers */,
 				8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */,
 				8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */,
-				8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */,
 			);
 			name = Rover;
 			sourceTree = "<group>";
@@ -257,6 +256,7 @@
 		8ECA71E523D03991004DC5CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */,
 				8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */,
 			);
 			name = Views;
