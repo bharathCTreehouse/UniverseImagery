@@ -35,17 +35,17 @@ enum UniverseImageAPIError: Error {
 
 class UniverseImageAPI {
     
-    func fetchMarsRoverImagery(forEndpoint endPoint: UniverseImageryEndpoint, withCompletionHandler handler: @escaping (([UniverseImageryRoverData]?, Error?) -> Void)) {
+    @discardableResult func fetchMarsRoverImagery(forEndpoint endPoint: UniverseImageryEndpoint, withCompletionHandler handler: @escaping (([UniverseImageryRoverData]?, Error?) -> Void)) -> URLSessionDataTask? {
         
         let urlReq: URLRequest? = endPoint.urlRequest
         
         guard let request = urlReq else {
             handler(nil, UniverseImageAPIError.invalidURL)
-            return
+            return nil
         }
         
         let session: URLSession = URLSession(configuration: .default)
-        session.dataTask(with: request, completionHandler: { (responseData: Data?, urlResp: URLResponse?, error: Error?) -> Void in
+        let dataTask: URLSessionDataTask = session.dataTask(with: request, completionHandler: { (responseData: Data?, urlResp: URLResponse?, error: Error?) -> Void in
             
             if let error = error {
                 //API has returned an error for us. Just call the handler with the error.
@@ -85,8 +85,10 @@ class UniverseImageAPI {
                 }
             }
             
-        }).resume()
-        
+        })
+        dataTask.resume()
+       
+        return dataTask
         
     }
     

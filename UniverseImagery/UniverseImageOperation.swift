@@ -38,35 +38,28 @@ class UniverseImageOperation: Operation {
             completionHandler(nil, uniqueIdentifier, nil, true)
         }
         do {
-            //let downloadedImg = UIImage(
-            //print(downloadedImg)
 
             let imageData: Data = try Data.init(contentsOf: imageUrl, options: [])
-            print(imageData)
             if isCancelled == true {
                 completionHandler(nil, uniqueIdentifier, nil, true)
             }
-            if imageData.isEmpty == false {
+            else if imageData.isEmpty == false {
+                print(imageData)
                 let image: UIImage? = UIImage(data: imageData)
                 if let image = image {
-                    completionHandler(image, uniqueIdentifier, nil, false)
+                    completionHandler(image, uniqueIdentifier, nil, isCancelled)
                 }
                 else {
-                    completionHandler(image, uniqueIdentifier, UniverseImageOperationError.invalidImageData, false)
+                    completionHandler(image, uniqueIdentifier, UniverseImageOperationError.invalidImageData, isCancelled)
                 }
             }
             else {
                 //Data empty. Error out.
-                completionHandler(nil, uniqueIdentifier, UniverseImageOperationError.noImageData, false)
+                completionHandler(nil, uniqueIdentifier, UniverseImageOperationError.noImageData, isCancelled)
             }
         }
         catch (let error) {
-            if isCancelled == true {
-                completionHandler(nil, uniqueIdentifier, nil, true)
-            }
-            else {
-                completionHandler(nil, uniqueIdentifier, error, false)
-            }
+            completionHandler(nil, uniqueIdentifier, error, isCancelled)
         }
     }
     

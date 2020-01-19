@@ -22,8 +22,10 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     @IBOutlet private weak var filterCriteriaActivationSwitch: UISwitch!
     @IBOutlet private weak var filterCriteriaTextField: UITextField!
     @IBOutlet private weak var cameraTypeLabel: UILabel!
+    @IBOutlet private weak var searchResultsIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var showResultsButton : UIButton!
 
-    
+
     //criteria to search/filter (to be used for the API)
     private(set) var filterCriteria: UniverseRoverCameraCriteria? = nil
     private(set) var cameraType: UniverseRoverCamera? = nil
@@ -32,6 +34,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     private var roverSelectionCriteriaTextFieldDelegate: UniverseImageryTextFieldDelegate? = nil
     
     var pageCount: Int = 1
+    var roversImageryDataTask: URLSessionDataTask? = nil
 
 
 
@@ -59,10 +62,18 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         pageCount = 1
+        cancelCurrentRoverImageFetchTask()
+    }
+    
+    
+    func cancelCurrentRoverImageFetchTask() {
+        
+        roversImageryDataTask?.cancel()
+        roversImageryDataTask = nil
     }
     
     
@@ -131,6 +142,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     
 
     deinit {
+        cancelCurrentRoverImageFetchTask()
         selectCameraButton = nil
         filterCriteriaSegmentControl = nil
         filterCriteriaActivationSwitch = nil
@@ -139,6 +151,9 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         cameraType = nil
         filterCriteria = nil
         cameraTypeLabel = nil
+        searchResultsIndicatorView = nil
+        showResultsButton = nil
+        roversImageryDataTask = nil
     }
     
 }
@@ -146,7 +161,6 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
 
 
 extension UniverseRoverCriteriaSelectionViewController {
-    
     
     @IBAction func selectCameraButtonTapped(_ sender: UIButton) {
         
@@ -176,7 +190,6 @@ extension UniverseRoverCriteriaSelectionViewController {
         }
         else {
             filterCriteriaTextField.alpha = 0.4
-            filterCriteria = nil
         }
         filterCriteriaTextField.isUserInteractionEnabled = sender.isOn
     }
@@ -213,25 +226,44 @@ extension UniverseRoverCriteriaSelectionViewController {
     }
     
     
-    func fetchRoverImageData() {
+    func fetchRoverImageData(showActivityIndicator show: Bool = true) {
         
         let apiClient: UniverseImageAPI = UniverseImageAPI()
         
-        let roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: pageCount, fetchCriteria: filterCriteria, cameraType: cameraType)
+        var roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: pageCount, fetchCriteria: filterCriteria, cameraType: cameraType)
+
+        if filterCriteriaActivationSwitch.isOn == false {
+            roverEndPoint = .fetchRoverImage(page: pageCount, fetchCriteria: nil, cameraType: cameraType)
+        }
         
-        apiClient.fetchMarsRoverImagery(forEndpoint: roverEndPoint, withCompletionHandler: { [unowned self] (roverDataList: [UniverseImageryRoverData]?, error: Error?) -> Void in
+        if show == true {
+            //Animate the indicator to signal fetching in progress.
+            searchResultsIndicatorView.startAnimating()
+            showResultsButton.isEnabled = false
+            showResultsButton.alpha = 0.3
+        }
+        
+        
+        roversImageryDataTask = apiClient.fetchMarsRoverImagery(forEndpoint: roverEndPoint, withCompletionHandler: { [unowned self] (roverDataList: [UniverseImageryRoverData]?, error: Error?) -> Void in
             
             DispatchQueue.main.async {
                 
                 if let error = error {
                     
-                    self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
-
+                    if error.causedByAPICancellation == false {
+                        
+                        self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+                    }
+                    else {
+                        //No further execution required.
+                        return
+                    }
                 }
                 else {
                     
-                    if let roverDataList = roverDataList {
+                    if let roverDataList = roverDataList, self.roversImageryDataTask != nil {
                         
+                        //Proceed with processing API data only if roversImageryDataTask is not nil i.e if task hasnt been cancelled.
                         let roverImageViewModels: [UniverseImageViewModel] = roverDataList.map({ (roverData: UniverseImageryRoverData) -> UniverseImageViewModel in
                             
                             return UniverseImageViewModel(withImageData: roverData)
@@ -250,9 +282,9 @@ extension UniverseRoverCriteriaSelectionViewController {
                                 
                                 imageCollectionVC  = UniverseImageCollectionViewController(withImageViewModels: roverImageViewModels, loadMoreTapHandler: { () -> Void in
                                     
-                                    self.fetchRoverImageData()
+                                    self.fetchRoverImageData(showActivityIndicator: false)
                                 })
-                            self.navigationController?.pushViewController(imageCollectionVC!, animated: true)
+                                self.navigationController?.pushViewController(imageCollectionVC!, animated: true)
                                 
                             }
                             else {
@@ -270,12 +302,19 @@ extension UniverseRoverCriteriaSelectionViewController {
                                 
                                 let imageCollectionVC: UniverseImageCollectionViewController = self.navigationController?.topViewController as! UniverseImageCollectionViewController
                                 imageCollectionVC.addImageViewModels(fromList: [])
-
+                                
                             }
                             
                         }
                         
                     }
+                }
+                
+                if show == true {
+                    //Stop animating the indicator to signal end of fetching.
+                    self.searchResultsIndicatorView.stopAnimating()
+                    self.showResultsButton.isEnabled = true
+                    self.showResultsButton.alpha = 1.0
                 }
             }
             

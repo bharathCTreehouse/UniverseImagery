@@ -13,7 +13,9 @@
                 <outlet property="filterCriteriaActivationSwitch" destination="yXn-AU-HvR" id="XxJ-tW-WFy"/>
                 <outlet property="filterCriteriaSegmentControl" destination="qkP-RC-k6A" id="VlU-9p-JYI"/>
                 <outlet property="filterCriteriaTextField" destination="iKt-SO-lJB" id="8WF-AI-KU4"/>
+                <outlet property="searchResultsIndicatorView" destination="EVj-0g-eQD" id="RBl-4j-O9u"/>
                 <outlet property="selectCameraButton" destination="BQx-Hc-alh" id="qki-3D-mAf"/>
+                <outlet property="showResultsButton" destination="N9z-Tu-DZ6" id="6k4-D0-41l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -89,6 +91,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-0g-eQD">
+                    <rect key="frame" x="182" y="443" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="iEq-dB-d1i"/>
+                        <constraint firstAttribute="height" constant="50" id="luC-tg-7n9"/>
+                    </constraints>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -101,6 +111,8 @@
                 <constraint firstItem="qkP-RC-k6A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="P6V-hW-2Ta"/>
                 <constraint firstItem="9CT-Au-aOl" firstAttribute="top" secondItem="BQx-Hc-alh" secondAttribute="bottom" constant="16" id="RmE-hf-24g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qkP-RC-k6A" secondAttribute="trailing" constant="25" id="VBE-VI-Tmq"/>
+                <constraint firstItem="EVj-0g-eQD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c1P-ac-TvP"/>
+                <constraint firstItem="EVj-0g-eQD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="20" id="cvy-B5-VID"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N9z-Tu-DZ6" secondAttribute="trailing" constant="25" id="ee7-gb-Yeu"/>
                 <constraint firstItem="9CT-Au-aOl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iMx-Za-HlJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="N9z-Tu-DZ6" secondAttribute="bottom" constant="60" id="nnr-D2-NAS"/>

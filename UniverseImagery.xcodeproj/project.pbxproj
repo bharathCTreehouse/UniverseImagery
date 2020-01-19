@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CD0FDB723D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0FDB623D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift */; };
 		8E51DA4123C07B3D0019E673 /* UniverseRoverCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */; };
 		8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */; };
 		8E59119623C23C850060CC6A /* UniverseRoverAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E59119523C23C850060CC6A /* UniverseRoverAPIResult.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CD0FDB623D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryErrorUtilities.swift; sourceTree = "<group>"; };
 		8E51DA4023C07B3D0019E673 /* UniverseRoverCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCamera.swift; sourceTree = "<group>"; };
 		8E51DA4223C07EA10019E673 /* UniverseRoverCameraCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCameraCriteria.swift; sourceTree = "<group>"; };
 		8E59119523C23C850060CC6A /* UniverseRoverAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UniverseRoverAPIResult.swift; path = ../UniverseRoverAPIResult.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				8E60764B23C462D100EDEC8A /* UniverseAlertViewController.swift */,
 				8E60764D23C4D48400EDEC8A /* UniverseArrayExtension.swift */,
+				4CD0FDB623D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				8E59119D23C267300060CC6A /* UniverseImageryEarthData.swift in Sources */,
 				8EEC069923CDC17100A32FE8 /* UniverseRoverImageViewModel.swift in Sources */,
 				8E59119623C23C850060CC6A /* UniverseRoverAPIResult.swift in Sources */,
+				4CD0FDB723D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

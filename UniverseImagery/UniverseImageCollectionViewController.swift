@@ -41,14 +41,15 @@ class UniverseImageCollectionViewController: UICollectionViewController {
             }
             if imageViewModels.isEmpty == false {
                 collectionView.insertItems(at: newIndexPaths)
+                if imageDownloadingQueue == nil {
+                    imageDownloadingQueue = OperationQueue()
+                }
                 downloadImages()
             }
         }
     }
     
-    lazy private var imageDownloadingQueue: OperationQueue = {
-        return OperationQueue()
-    }()
+    private var imageDownloadingQueue: OperationQueue? = nil
     
     let loadMoreHandler: (() -> Void)
     
@@ -102,6 +103,13 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     }
     
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        imageDownloadingQueue?.cancelAllOperations()
+        imageDownloadingQueue = nil
+    }
+    
+    
     func downloadImages() {
         
         for (index, imageViewModel) in imageViewModels.enumerated() {
@@ -115,6 +123,9 @@ class UniverseImageCollectionViewController: UICollectionViewController {
             
             let imgOperation: UniverseImageOperation = UniverseImageOperation(withImageUrl: url, uniqueIdentifier: "\(index)", completionHandler: { [unowned self] (img: UIImage?, identifier: String?, err: Error?, cancelled: Bool) -> Void in
                 
+                if cancelled == true {
+                    return
+                }
                 if let img = img {
                     
                     let index: Int? = Int(identifier ?? "")
@@ -134,8 +145,13 @@ class UniverseImageCollectionViewController: UICollectionViewController {
                     }
                 }
             })
-            imageDownloadingQueue.addOperation(imgOperation)
+            imageDownloadingQueue?.addOperation(imgOperation)
         }
+    }
+    
+    
+    deinit {
+        imageDownloadingQueue = nil
     }
 }
 
