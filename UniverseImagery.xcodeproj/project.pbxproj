@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CB8CC3A23D62C2D0002D411 /* UniverseEarthLocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8CC3923D62C2D0002D411 /* UniverseEarthLocationInfo.swift */; };
+		4CB8CC3C23D62C930002D411 /* UniverseEarthLocationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8CC3B23D62C930002D411 /* UniverseEarthLocationInfoViewModel.swift */; };
+		4CB8CC3F23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8CC3D23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.swift */; };
+		4CB8CC4023D64B3F0002D411 /* UniverseEarthDateSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB8CC3E23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.xib */; };
 		4CD0FDB723D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0FDB623D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift */; };
 		4CD0FDBB23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0FDB923D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.swift */; };
 		4CD0FDBC23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD0FDBA23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.xib */; };
@@ -57,6 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CB8CC3923D62C2D0002D411 /* UniverseEarthLocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthLocationInfo.swift; sourceTree = "<group>"; };
+		4CB8CC3B23D62C930002D411 /* UniverseEarthLocationInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthLocationInfoViewModel.swift; sourceTree = "<group>"; };
+		4CB8CC3D23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthDateSelectionViewController.swift; sourceTree = "<group>"; };
+		4CB8CC3E23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseEarthDateSelectionViewController.xib; sourceTree = "<group>"; };
 		4CD0FDB623D4A4B800CA6052 /* UniverseImageryErrorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryErrorUtilities.swift; sourceTree = "<group>"; };
 		4CD0FDB923D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthCriteriaSelectionViewController.swift; sourceTree = "<group>"; };
 		4CD0FDBA23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UniverseEarthCriteriaSelectionViewController.xib; sourceTree = "<group>"; };
@@ -118,11 +126,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB8CC3723D62BD40002D411 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4CB8CC3923D62C2D0002D411 /* UniverseEarthLocationInfo.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4CB8CC3823D62BF40002D411 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4CB8CC3B23D62C930002D411 /* UniverseEarthLocationInfoViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
 		4CD0FDB823D4D34200CA6052 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				4CD0FDB923D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.swift */,
 				4CD0FDBA23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.xib */,
+				4CB8CC3D23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.swift */,
+				4CB8CC3E23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -141,6 +167,8 @@
 		8E59119B23C2671B0060CC6A /* Earth */ = {
 			isa = PBXGroup;
 			children = (
+				4CB8CC3823D62BF40002D411 /* ViewModels */,
+				4CB8CC3723D62BD40002D411 /* Models */,
 				4CD0FDB823D4D34200CA6052 /* Controllers */,
 			);
 			name = Earth;
@@ -390,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB8CC4023D64B3F0002D411 /* UniverseEarthDateSelectionViewController.xib in Resources */,
 				8E60764923C3AC9C00EDEC8A /* UniverseRoverCriteriaSelectionViewController.xib in Resources */,
 				8EEC06A023CDD51200A32FE8 /* UniverseImageCollectionViewController.xib in Resources */,
 				8E7BEC3823BFCBD4004D14A2 /* LaunchScreen.storyboard in Resources */,
@@ -419,7 +448,9 @@
 				8EEC069C23CDC9F300A32FE8 /* UniverseImageViewModel.swift in Sources */,
 				8EEC06AF23CF2E1900A32FE8 /* UniverseImageEmailDataSource.swift in Sources */,
 				8E7BEC3023BFCBCE004D14A2 /* ViewController.swift in Sources */,
+				4CB8CC3F23D64B3F0002D411 /* UniverseEarthDateSelectionViewController.swift in Sources */,
 				8E7BEC5123BFE0FF004D14A2 /* UniverseImageryEndpoint.swift in Sources */,
+				4CB8CC3A23D62C2D0002D411 /* UniverseEarthLocationInfo.swift in Sources */,
 				8E51DA4323C07EA10019E673 /* UniverseRoverCameraCriteria.swift in Sources */,
 				8E60764E23C4D48400EDEC8A /* UniverseArrayExtension.swift in Sources */,
 				8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift in Sources */,
@@ -437,6 +468,7 @@
 				8E59119823C23E4C0060CC6A /* UniverseImageryData.swift in Sources */,
 				8EEC069F23CDD51200A32FE8 /* UniverseImageCollectionViewController.swift in Sources */,
 				8EEC06A523CE37BD00A32FE8 /* UniverseImageViewController.swift in Sources */,
+				4CB8CC3C23D62C930002D411 /* UniverseEarthLocationInfoViewModel.swift in Sources */,
 				4CD0FDBB23D4D37D00CA6052 /* UniverseEarthCriteriaSelectionViewController.swift in Sources */,
 				8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */,
 				8E59119D23C267300060CC6A /* UniverseImageryEarthData.swift in Sources */,

@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import MapKit
 
 class UniverseEarthCriteriaSelectionViewController: UIViewController {
 
     @IBOutlet weak var locationListTableView: UITableView!
     @IBOutlet weak var locationSearchBar: UISearchBar!
+    private var localSearch: MKLocalSearch? = nil
+    lazy var earthLocationViewModels: [UniverseEarthLocationInfoViewModel] = {
+       return []
+    }()
     
     
     init() {
@@ -25,20 +30,50 @@ class UniverseEarthCriteriaSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        locationListTableView.dataSource = self
-        locationListTableView.delegate = self
-        locationListTableView.estimatedRowHeight = 50.0
-        locationListTableView.rowHeight = UITableView.automaticDimension
-        locationListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationListCell")
-        
+        navigationItem.title = "EARTH LOCATION SELECTION"
     }
     
     
     deinit {
         locationListTableView = nil
         locationSearchBar = nil
+        localSearch = nil
+    }
+}
+
+
+extension UniverseEarthCriteriaSelectionViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        earthLocationViewModels.removeAll()
+        searchBar.resignFirstResponder()
+        
+        let searchRequest: MKLocalSearch.Request = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        localSearch = MKLocalSearch(request: searchRequest)
+        
+        localSearch!.start { [unowned self] (searchResponse, searchError) in
+            
+            if let error = searchError {
+                self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+            }
+            else if let response = searchResponse {
+                
+                let searchResultMapItems: [MKMapItem] = response.mapItems
+                
+                for mapItem in searchResultMapItems {
+                    
+                    let locInfo: UniverseEarthLocationInfo = UniverseEarthLocationInfo(locationName: mapItem.name, locationPlacemark: mapItem.placemark)
+                    self.earthLocationViewModels.append(UniverseEarthLocationInfoViewModel(withLocationInfo: locInfo))
+                    
+                }
+                
+            }
+            self.locationListTableView.reloadData()
+
+        }
     }
 }
 
@@ -47,17 +82,31 @@ class UniverseEarthCriteriaSelectionViewController: UIViewController {
 extension UniverseEarthCriteriaSelectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return earthLocationViewModels.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "locationListCell", for: indexPath)
-        cell.backgroundColor = UIColor.black
-        cell.textLabel?.text = "India"
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 19.0)
-        cell.textLabel?.textColor = UIColor.white
-        return cell
+        let locationViewModel: UniverseEarthLocationInfoViewModel = earthLocationViewModels[indexPath.row]
+        
+        var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "locationListCell")
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "locationListCell")
+        }
+        cell!.backgroundColor = UIColor.black
+        
+        let locationNameDetail = locationViewModel.locationNameDisplayableDetail
+        cell!.textLabel?.text = locationNameDetail.text
+        cell!.textLabel?.font = locationNameDetail.font
+        cell!.textLabel?.textColor = locationNameDetail.color
+        
+        let addressDetail = locationViewModel.addressDisplayableDetail
+        cell!.detailTextLabel?.text = addressDetail.text
+        cell!.detailTextLabel?.font = addressDetail.font
+        cell!.detailTextLabel?.textColor = addressDetail.color
+        
+        return cell!
     }
 }
 
@@ -67,6 +116,9 @@ extension UniverseEarthCriteriaSelectionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        let dateSelectionVC: UniverseEarthDateSelectionViewController = UniverseEarthDateSelectionViewController()
+        navigationController?.pushViewController(dateSelectionVC, animated: true)
+        
     }
-    
 }
