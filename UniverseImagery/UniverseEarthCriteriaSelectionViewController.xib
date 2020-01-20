@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <searchBar contentMode="redraw" barStyle="black" searchBarStyle="prominent" placeholder="Search for a location" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydo-k7-32H">
-                    <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                    <rect key="frame" x="0.0" y="69" width="414" height="56"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="location"/>
                     <connections>
@@ -28,7 +28,7 @@
                     </connections>
                 </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="grouped" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="70" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="P4p-aN-Wwh">
-                    <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                    <rect key="frame" x="0.0" y="125" width="414" height="737"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,7 +45,7 @@
                 <constraint firstAttribute="trailing" secondItem="Ydo-k7-32H" secondAttribute="trailing" symbolic="YES" id="3Qh-IK-cpE"/>
                 <constraint firstItem="P4p-aN-Wwh" firstAttribute="top" secondItem="Ydo-k7-32H" secondAttribute="bottom" id="925-kb-Gxz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P4p-aN-Wwh" secondAttribute="trailing" id="AE6-Fi-6Fv"/>
-                <constraint firstItem="Ydo-k7-32H" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MOd-Ww-egg"/>
+                <constraint firstItem="Ydo-k7-32H" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="MOd-Ww-egg"/>
                 <constraint firstItem="Ydo-k7-32H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Y7A-5n-0CO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="P4p-aN-Wwh" secondAttribute="bottom" id="buJ-iK-1aN"/>
             </constraints>
