@@ -11,18 +11,14 @@ import Foundation
 
 class UniverseImageryData: Decodable {
     
-    let id: Int
     var url: String = ""
     
     enum UniverseImageryDataCodingKey: String, CodingKey {
-        case id
         case url
     }
     
     
     required init(from decoder: Decoder) throws {
-        let container: KeyedDecodingContainer = try decoder.container(keyedBy: UniverseImageryDataCodingKey.self)
-        id = try container.decode(Int.self, forKey: .id)
         url = urlString(usingDecoder: decoder)
     }
     

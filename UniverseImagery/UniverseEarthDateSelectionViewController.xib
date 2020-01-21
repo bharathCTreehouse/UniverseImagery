@@ -9,6 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UniverseEarthDateSelectionViewController" customModule="UniverseImagery" customModuleProvider="target">
             <connections>
+                <outlet property="addressLabel" destination="GMf-Yl-D3I" id="y4T-d3-nIT"/>
+                <outlet property="dateTextField" destination="V5q-Wb-JFj" id="HXY-9L-6rH"/>
+                <outlet property="showImageButton" destination="q9h-UL-eov" id="vtk-F0-QCV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +34,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5ke-dg-mQm">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5ke-dg-mQm">
                     <rect key="frame" x="182" y="263" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="0Co-DF-mYh"/>
@@ -49,6 +52,9 @@
                     <state key="normal" title="SHOW IMAGE">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="showImageButtonTapped:" destination="-1" eventType="touchUpInside" id="gKi-gG-bWz"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
