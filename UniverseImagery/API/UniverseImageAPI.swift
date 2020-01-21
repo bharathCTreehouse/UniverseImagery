@@ -102,7 +102,7 @@ class UniverseImageAPI {
                return nil
            }
            
-           let session: URLSession = URLSession(configuration: .default)
+        let session: URLSession = URLSession(configuration: .default)
            let dataTask: URLSessionDataTask = session.dataTask(with: request, completionHandler: { (responseData: Data?, urlResp: URLResponse?, error: Error?) -> Void in
                
                if let error = error {

@@ -96,7 +96,9 @@ class UniverseEarthDateSelectionViewController: UIViewController {
     
     @IBAction func showImageButtonTapped(_ sender: UIButton) {
         
-        let earthImageEndpoint: UniverseImageryEndpoint = .fetchEarthImage(latitude: Float(self.locationCoordinate.latitude), longitude: Float(self.locationCoordinate.longitude), date: dateStringForEndpoint())
+        //let earthImageEndpoint: UniverseImageryEndpoint = .fetchEarthImage(latitude: Float(self.locationCoordinate.latitude), longitude: Float(self.locationCoordinate.longitude), date: dateStringForEndpoint())
+        
+        let earthImageEndpoint: UniverseImageryEndpoint = .fetchEarthImage(latitude: 1.5, longitude: 100.75, date: dateStringForEndpoint(), cloudScore: true)
         
         let api: UniverseImageAPI = UniverseImageAPI()
         api.fetchEarthImagery(forEndpoint: earthImageEndpoint, withCompletionHandler: { (earthData: UniverseImageryEarthData?, err: Error?) -> Void in

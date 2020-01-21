@@ -12,14 +12,14 @@ import Foundation
 enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
     
     case fetchRoverImage(page: Int?, fetchCriteria: UniverseRoverCameraCriteria?, cameraType: UniverseRoverCamera?)
-    case fetchEarthImage(latitude: Float, longitude: Float, date: String?)
+    case fetchEarthImage(latitude: Float, longitude: Float, date: String?, cloudScore: Bool)
     case unknown
     
     var urlPath: String {
         
         switch self {
-            case .fetchRoverImage: return "/mars-photos/api/v1/rovers/curiosity/photos"
-            case .fetchEarthImage: return "/planetary/earth/imagery"
+            case .fetchRoverImage: return "/mars-photos/api/v1/rovers/curiosity/photos/"
+            case .fetchEarthImage: return "/planetary/earth/imagery/"
             default: return ""
         }
     }
@@ -57,7 +57,7 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                 }
             
             
-            case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr):
+        case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr, cloudScore: let cs):
                 
                 let latQueryItem: URLQueryItem = URLQueryItem(name: "lat", value: "\(lat)")
                 allQueryItems.append(latQueryItem)
@@ -69,6 +69,10 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                     let dateQueryItem: URLQueryItem = URLQueryItem(name: "date", value: dateStr)
                     allQueryItems.append(dateQueryItem)
                 }
+                
+                let csQueryItem: URLQueryItem = URLQueryItem(name: "cloud_score", value: "\(cs)")
+                allQueryItems.append(csQueryItem)
+
             
             default: print("")
         }
