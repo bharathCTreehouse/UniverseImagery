@@ -12,14 +12,14 @@ import Foundation
 enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
     
     case fetchRoverImage(page: Int?, fetchCriteria: UniverseRoverCameraCriteria?, cameraType: UniverseRoverCamera?)
-    case fetchEarthImage
+    case fetchEarthImage(latitude: Float, longitude: Float, date: String?)
     case unknown
     
     var urlPath: String {
         
         switch self {
             case .fetchRoverImage: return "/mars-photos/api/v1/rovers/curiosity/photos"
-            case .fetchEarthImage: return ""
+            case .fetchEarthImage: return "/planetary/earth/imagery"
             default: return ""
         }
     }
@@ -55,8 +55,20 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                     let cameraQItem = URLQueryItem(name: "camera", value: camType!.rawValue)
                     allQueryItems.append(cameraQItem)
                 }
+            
+            
+            case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr):
                 
-            case .fetchEarthImage: print("")
+                let latQueryItem: URLQueryItem = URLQueryItem(name: "lat", value: "\(lat)")
+                allQueryItems.append(latQueryItem)
+            
+                let longiQueryItem: URLQueryItem = URLQueryItem(name: "lon", value: "\(longi)")
+                allQueryItems.append(longiQueryItem)
+                
+                if let dateStr = dateStr {
+                    let dateQueryItem: URLQueryItem = URLQueryItem(name: "date", value: dateStr)
+                    allQueryItems.append(dateQueryItem)
+                }
             
             default: print("")
         }

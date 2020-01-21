@@ -12,7 +12,7 @@ import UIKit
 
 class UniverseEarthLocationInfoViewModel {
     
-    private let locationInfo: UniverseEarthLocationInfo
+    private(set) var locationInfo: UniverseEarthLocationInfo
     
     init(withLocationInfo info: UniverseEarthLocationInfo) {
         locationInfo = info

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 enum UniverseImageryTextFieldDelegateState {
+    case editingShouldBegin(forTxtField: UITextField)
     case editingDidBegin(forTxtField: UITextField)
     case returnKeyTapped(forTxtField: UITextField)
     case editingDidEnd(forTxtField: UITextField)
@@ -44,6 +45,13 @@ class UniverseImageryTextFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         stateHandler(.editingDidEnd(forTxtField: textField))
     }
+    
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        stateHandler(.editingShouldBegin(forTxtField: textField))
+        return true
+    }
+
     
     
     deinit {

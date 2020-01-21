@@ -7,11 +7,30 @@
 //
 
 import UIKit
+import CoreLocation
+
 
 class UniverseEarthDateSelectionViewController: UIViewController {
     
+    @IBOutlet weak private var dateTextField: UITextField!
+    @IBOutlet weak private var addressLabel: UILabel!
+
+    let locationCoordinate: CLLocationCoordinate2D
+    let locationAddressString: String
     
-    init() {
+    lazy var dateTextFieldDelegate: UniverseImageryTextFieldDelegate = {
+        
+        return UniverseImageryTextFieldDelegate(withTextField: dateTextField, stateHandler: { (state: UniverseImageryTextFieldDelegateState) -> Void in
+            
+            
+        })
+    }()
+    
+    
+    required init(withLocationCoordinate coordinate: CLLocationCoordinate2D, addressString addr: String) {
+        
+        locationCoordinate = coordinate
+        locationAddressString = addr
         super.init(nibName: "UniverseEarthDateSelectionViewController", bundle: .main)
     }
     
@@ -23,17 +42,10 @@ class UniverseEarthDateSelectionViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        addressLabel.text = locationAddressString
     }
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

@@ -117,8 +117,14 @@ extension UniverseEarthCriteriaSelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        let dateSelectionVC: UniverseEarthDateSelectionViewController = UniverseEarthDateSelectionViewController()
-        navigationController?.pushViewController(dateSelectionVC, animated: true)
         
+        let locationViewModel: UniverseEarthLocationInfoViewModel = earthLocationViewModels[indexPath.row]
+        let location: CLLocation? = locationViewModel.locationInfo.locationPlacemark.location
+        
+        if let location = location {
+            
+            let dateSelectionVC: UniverseEarthDateSelectionViewController = UniverseEarthDateSelectionViewController(withLocationCoordinate: location.coordinate, addressString: "\(locationViewModel.locationNameDisplayableDetail.text), \(locationViewModel.addressDisplayableDetail.text)")
+            navigationController?.pushViewController(dateSelectionVC, animated: true)
+        }
     }
 }
