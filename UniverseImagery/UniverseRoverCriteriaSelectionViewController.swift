@@ -35,6 +35,14 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     
     var pageCount: Int = 1
     var roversImageryDataTask: URLSessionDataTask? = nil
+    
+    lazy var dateFormatterForDisplay: DateFormatter = {
+       
+        let df: DateFormatter = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .none
+        return df
+    }()
 
 
 
@@ -121,10 +129,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         if filterCriteriaDatePicker != nil {
             
             let dateSelected: Date = filterCriteriaDatePicker!.date
-            let df: DateFormatter = DateFormatter()
-            df.dateStyle = .medium
-            df.timeZone = .none
-            filterCriteriaTextField.text = df.string(from: dateSelected)
+            filterCriteriaTextField.text = dateFormatterForDisplay.string(from: dateSelected)
         }
     }
     
@@ -166,8 +171,6 @@ extension UniverseRoverCriteriaSelectionViewController {
         
         let cameraSelectionVC: UniverseRoverCameraSelectionViewController = UniverseRoverCameraSelectionViewController(withSelectionHandler: { [unowned self] (camera: String, index: Int?, selectAll: Bool) -> Void in
             
-            self.view.alpha = 1.0
-
             if selectAll == true {
                 self.cameraType = nil
             }
@@ -179,7 +182,6 @@ extension UniverseRoverCriteriaSelectionViewController {
         
         let navController: UINavigationController = UINavigationController(rootViewController: cameraSelectionVC)
         present(navController, animated: true, completion: nil)
-        view.alpha = 0.3
     }
     
     
@@ -239,10 +241,8 @@ extension UniverseRoverCriteriaSelectionViewController {
         if show == true {
             //Animate the indicator to signal fetching in progress.
             searchResultsIndicatorView.startAnimating()
-            showResultsButton.isEnabled = false
-            showResultsButton.alpha = 0.3
+            showResultsButton.enable(false, withAlpha: 0.3)
         }
-        
         
         roversImageryDataTask = apiClient.fetchMarsRoverImagery(forEndpoint: roverEndPoint, withCompletionHandler: { [unowned self] (roverDataList: [UniverseImageryRoverData]?, error: Error?) -> Void in
             
@@ -313,8 +313,7 @@ extension UniverseRoverCriteriaSelectionViewController {
                 if show == true {
                     //Stop animating the indicator to signal end of fetching.
                     self.searchResultsIndicatorView.stopAnimating()
-                    self.showResultsButton.isEnabled = true
-                    self.showResultsButton.alpha = 1.0
+                    self.showResultsButton.enable(true)
                 }
             }
             

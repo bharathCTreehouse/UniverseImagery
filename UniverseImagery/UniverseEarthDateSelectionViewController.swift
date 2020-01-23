@@ -10,19 +10,22 @@ import UIKit
 import CoreLocation
 
 
-
 class UniverseEarthDateSelectionViewController: UIViewController {
     
     @IBOutlet weak private var dateTextField: UITextField!
     @IBOutlet weak private var addressLabel: UILabel!
     @IBOutlet weak private var showImageButton: UIButton!
     @IBOutlet weak private var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak private var fetchingStatusTextLabel: UILabel!
+
 
     let locationCoordinate: CLLocationCoordinate2D
     let locationAddressString: String
     private(set) var dateTextFieldDelegate: UniverseImageryTextFieldDelegate? = nil
-    var selectedDate: Date? = nil
-    var imageFetchingQueue: OperationQueue? = nil
+    private(set) var selectedDate: Date? = nil
+    private(set) var imageFetchingQueue: OperationQueue? = nil
+    private(set) var imageDataTask: URLSessionDataTask? = nil
+    
     private var fetchInProgress: Bool = false {
         didSet {
             if fetchInProgress == true {
@@ -35,6 +38,14 @@ class UniverseEarthDateSelectionViewController: UIViewController {
             }
         }
     }
+    
+    lazy var dateFormatterForDisplay: DateFormatter = {
+       
+        let df: DateFormatter = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .none
+        return df
+    }()
 
     
     
@@ -55,59 +66,47 @@ class UniverseEarthDateSelectionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         addressLabel.text = locationAddressString
+        configureDateTextFieldDelegate()
+        navigationItem.title = "SELECT DATE"
+    }
+    
+    
+    func configureDateTextFieldDelegate() {
         
         dateTextFieldDelegate = UniverseImageryTextFieldDelegate(withTextField: dateTextField, stateHandler: { (state: UniverseImageryTextFieldDelegateState) -> Void in
             
             switch state {
                 
-                case .editingShouldBegin:
-                    
-                    if self.dateTextField.inputView == nil {
-                        
-                        //Setup date picker view.
-                        let datePicker: UniverseImageryDatePicker = UniverseImageryDatePicker()
-                        self.dateTextField.inputView = datePicker
-                        
-                        //Add tool bar with done and clear buttons.
-                        let toolBar: UIToolbar = UIToolbar(frame: .init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: 44.0))
-                        let clearButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.clearButtonTapped(_:)))
-                        let flexiSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-                        let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneButtonTapped(_:)))
-                        toolBar.setItems([clearButton, flexiSpace, doneButton ], animated: false)
-                        self.dateTextField.inputAccessoryView = toolBar
-
-                    }
+            case .editingShouldBegin:
                 
-                default: break
+                if self.dateTextField.inputView == nil {
+                    
+                    //Setup date picker view.
+                    let datePicker: UniverseImageryDatePicker = UniverseImageryDatePicker()
+                    self.dateTextField.inputView = datePicker
+                    
+                    //Add tool bar with done and clear buttons.
+                    let toolBar: UIToolbar = UIToolbar(frame: .init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: 44.0))
+                    let clearButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.clearButtonTapped(_:)))
+                    let flexiSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+                    let doneButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneButtonTapped(_:)))
+                    toolBar.setItems([clearButton, flexiSpace, doneButton ], animated: false)
+                    self.dateTextField.inputAccessoryView = toolBar
+                    
+                }
+                
+            default: break
             }
             
         })
-
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.activityIndicatorView.addObserver(self, forKeyPath: "isAnimating", options: .new, context: nil)
-
-    }
-    
+   
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        imageDataTask?.cancel()
         imageFetchingQueue?.cancelAllOperations()
         imageFetchingQueue = nil
-        self.activityIndicatorView.removeObserver(self, forKeyPath: "isAnimating")
-        
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == "isAnimating" {
-            print("Bingo")
-        }
-        else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     
@@ -125,29 +124,27 @@ class UniverseEarthDateSelectionViewController: UIViewController {
         let datePicker: UniverseImageryDatePicker? = dateTextField.inputView as? UniverseImageryDatePicker
         
         if datePicker != nil {
-            
             selectedDate = datePicker!.date
-            let df: DateFormatter = DateFormatter()
-            df.dateStyle = .medium
-            df.timeZone = .none
-            
-            dateTextField.text = df.string(from: selectedDate!)
+            dateTextField.text = dateFormatterForDisplay.string(from: selectedDate!)
         }
     }
     
     
     @IBAction func showImageButtonTapped(_ sender: UIButton) {
         
+        fetchingStatusTextLabel.text = "Looking for an image matching your criteria..."
+        
         let earthImageEndpoint: UniverseImageryEndpoint = .fetchEarthImage(latitude: Float(self.locationCoordinate.latitude), longitude: Float(self.locationCoordinate.longitude), date: dateStringForEndpoint())
         
         fetchInProgress = true
         
         let api: UniverseImageAPI = UniverseImageAPI()
-        api.fetchEarthImagery(forEndpoint: earthImageEndpoint, withCompletionHandler: { [unowned self] (earthData: UniverseImageryEarthData?, err: Error?) -> Void in
+        imageDataTask = api.fetchEarthImagery(forEndpoint: earthImageEndpoint, withCompletionHandler: { [unowned self] (earthData: UniverseImageryEarthData?, err: Error?) -> Void in
             
             DispatchQueue.main.async {
                 
                 if let earthData = earthData {
+                    self.fetchingStatusTextLabel.text = "Found an image matching your criteria"
                     self.fetchImage(forEarthData: earthData)
                 }
                 else {
@@ -156,13 +153,21 @@ class UniverseEarthDateSelectionViewController: UIViewController {
                     
                     var errorTitle: String = ""
                     if err != nil {
-                        errorTitle = err!.localizedDescription
+                        if err!.causedByAPICancellation == false {
+                            errorTitle = err!.localizedDescription
+                        }
                     }
                     else {
                         //No image found
                         errorTitle = "There is no image matching your search criteria. Please refine your criteria and try again"
                     }
-                    self.showAlert(withTitle: errorTitle, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+                    
+                    if errorTitle.isEmpty == false {
+                        self.showAlert(withTitle: errorTitle, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
+                    }
+                    
+                    self.fetchingStatusTextLabel.text = nil
+                    
                 }
             }
             
@@ -182,6 +187,8 @@ class UniverseEarthDateSelectionViewController: UIViewController {
             return
         }
         
+        self.fetchingStatusTextLabel.text = "Fetching the image..."
+
         imageFetchingQueue = OperationQueue()
         
         let imgOperation: UniverseImageOperation = UniverseImageOperation(withImageUrl: imageUrl!, completionHandler: { [unowned self] (image: UIImage?, id: String?, err: Error?, operationCancelled: Bool) -> Void in
@@ -189,6 +196,7 @@ class UniverseEarthDateSelectionViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 self.fetchInProgress = false
+                self.fetchingStatusTextLabel.text = nil
 
                 guard operationCancelled == false else {
                     return
@@ -214,7 +222,7 @@ class UniverseEarthDateSelectionViewController: UIViewController {
         
         if selectedDate != nil {
             let df: DateFormatter = DateFormatter()
-            df.dateFormat = "YYYY-MM-DD"
+            df.dateFormat = "yyyy-MM-dd"
             return df.string(from: selectedDate!)
         }
         else {
@@ -230,6 +238,8 @@ class UniverseEarthDateSelectionViewController: UIViewController {
         showImageButton = nil
         dateTextFieldDelegate = nil
         activityIndicatorView = nil
+        fetchingStatusTextLabel = nil
+        imageDataTask = nil
     }
 
 }

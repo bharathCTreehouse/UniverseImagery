@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8DD361A7-6B85-45D7-9FF0-A0D8333021AC"
+            uuid = "D381EE70-3140-4F19-9E67-B5D077E48C2C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UniverseImagery/UniverseImageOperation.swift"
+            filePath = "UniverseImagery/API/UniverseImageAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "init(withImageUrl:uniqueIdentifier:completionHandler:)"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "fetchEarthImagery(forEndpoint:withCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

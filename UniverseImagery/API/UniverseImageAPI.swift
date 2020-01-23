@@ -134,7 +134,7 @@ class UniverseImageAPI {
                     }
                     else {
                         if httpResponse.statusCode == 500 {
-                            //Internal service error. The API at times returns 500. This could mean that it could not find an image matching our criteria. So an error code 500 is considered as no image found.
+                            //Internal service error. The API at times returns 500. This could mean that it couldnt find an image matching our criteria. So an error code 500 is considered as no image found.
                             handler(nil, nil)
                         }
                         else {

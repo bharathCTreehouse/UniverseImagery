@@ -19,7 +19,7 @@ enum UniverseRoverCameraCriteria {
     case earthDate(String)   //date format is YYYY-MM-DD
     
     static var earthDateFormat: String {
-        return "YYYY-MM-DD"
+        return "yyyy-MM-dd"
     }
     
     func validateSol() throws {
