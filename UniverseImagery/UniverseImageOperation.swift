@@ -27,8 +27,10 @@ class UniverseImageOperation: Operation {
         completionHandler = handler
         uniqueIdentifier = id
         
-        let tempUrlString = imageUrl.absoluteString.replacingOccurrences(of: "http", with: "https")
-        imageUrl = URL(string: tempUrlString)!
+        if imageUrl.absoluteString.contains("https") == false {
+            let tempUrlString = imageUrl.absoluteString.replacingOccurrences(of: "http", with: "https")
+            imageUrl = URL(string: tempUrlString)!
+        }
     }
     
     

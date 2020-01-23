@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UniverseEarthDateSelectionViewController" customModule="UniverseImagery" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicatorView" destination="5ke-dg-mQm" id="lPg-wY-dae"/>
                 <outlet property="addressLabel" destination="GMf-Yl-D3I" id="y4T-d3-nIT"/>
                 <outlet property="dateTextField" destination="V5q-Wb-JFj" id="HXY-9L-6rH"/>
                 <outlet property="showImageButton" destination="q9h-UL-eov" id="vtk-F0-QCV"/>

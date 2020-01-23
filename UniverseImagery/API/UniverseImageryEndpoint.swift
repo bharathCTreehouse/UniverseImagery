@@ -12,7 +12,7 @@ import Foundation
 enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
     
     case fetchRoverImage(page: Int?, fetchCriteria: UniverseRoverCameraCriteria?, cameraType: UniverseRoverCamera?)
-    case fetchEarthImage(latitude: Float, longitude: Float, date: String?, cloudScore: Bool)
+    case fetchEarthImage(latitude: Float, longitude: Float, date: String?)
     case unknown
     
     var urlPath: String {
@@ -57,7 +57,7 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                 }
             
             
-        case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr, cloudScore: let cs):
+        case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr):
                 
                 let latQueryItem: URLQueryItem = URLQueryItem(name: "lat", value: "\(lat)")
                 allQueryItems.append(latQueryItem)
@@ -70,8 +70,7 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                     allQueryItems.append(dateQueryItem)
                 }
                 
-                let csQueryItem: URLQueryItem = URLQueryItem(name: "cloud_score", value: "\(cs)")
-                allQueryItems.append(csQueryItem)
+               
 
             
             default: print("")
