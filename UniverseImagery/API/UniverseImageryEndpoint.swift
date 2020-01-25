@@ -73,7 +73,7 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                
 
             
-            default: print("")
+            default: break
         }
         
         return allQueryItems

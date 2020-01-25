@@ -22,7 +22,7 @@ enum UniverseRoverCameraCriteria {
         return "yyyy-MM-dd"
     }
     
-    func validateSol() throws {
+    /*func validateSol() throws {
         
         switch self {
             case .sol(let value):
@@ -42,5 +42,5 @@ enum UniverseRoverCameraCriteria {
                 }
             default: throw UniverseRoverCameraCriteriaValidationError.criteriaMissing
         }
-    }
+    }*/
 }

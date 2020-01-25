@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  UniverseImageryLandingViewController.swift
 //  UniverseImagery
 //
 //  Created by Bharath on 04/01/20.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class UniverseImageryLandingViewController: UIViewController {
     
-    @IBOutlet private var marsImagesButton: UIButton!
-    @IBOutlet private var earthImagesButton: UIButton!
+    @IBOutlet private(set) var marsImagesButton: UIButton!
+    @IBOutlet private(set) var earthImagesButton: UIButton!
 
 
     override func viewDidLoad() {
@@ -39,8 +39,5 @@ class ViewController: UIViewController {
         marsImagesButton = nil
         earthImagesButton = nil
     }
-    
-    
-  
 }
 

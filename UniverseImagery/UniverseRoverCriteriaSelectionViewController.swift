@@ -17,24 +17,24 @@ enum UniverseRoverFilter: Int {
 
 class UniverseRoverCriteriaSelectionViewController: UIViewController {
     
-    @IBOutlet private weak var selectCameraButton: UIButton!
-    @IBOutlet private weak var filterCriteriaSegmentControl: UISegmentedControl!
-    @IBOutlet private weak var filterCriteriaActivationSwitch: UISwitch!
-    @IBOutlet private weak var filterCriteriaTextField: UITextField!
-    @IBOutlet private weak var cameraTypeLabel: UILabel!
-    @IBOutlet private weak var searchResultsIndicatorView: UIActivityIndicatorView!
-    @IBOutlet private weak var showResultsButton : UIButton!
+    @IBOutlet private(set) weak var selectCameraButton: UIButton!
+    @IBOutlet private(set) weak var filterCriteriaSegmentControl: UISegmentedControl!
+    @IBOutlet private(set) weak var filterCriteriaActivationSwitch: UISwitch!
+    @IBOutlet private(set) weak var filterCriteriaTextField: UITextField!
+    @IBOutlet private(set) weak var cameraTypeLabel: UILabel!
+    @IBOutlet private(set) weak var searchResultsIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private(set) weak var showResultsButton : UIButton!
 
 
     //criteria to search/filter (to be used for the API)
     private(set) var filterCriteria: UniverseRoverCameraCriteria? = nil
     private(set) var cameraType: UniverseRoverCamera? = nil
     
-    private var filterCriteriaDatePicker: UniverseImageryDatePicker? = nil
-    private var roverSelectionCriteriaTextFieldDelegate: UniverseImageryTextFieldDelegate? = nil
+    private(set) var filterCriteriaDatePicker: UniverseImageryDatePicker? = nil
+    private(set) var roverSelectionCriteriaTextFieldDelegate: UniverseImageryTextFieldDelegate? = nil
     
     var pageCount: Int = 1
-    var roversImageryDataTask: URLSessionDataTask? = nil
+    private(set) var roversImageryDataTask: URLSessionDataTask? = nil
     
     lazy var dateFormatterForDisplay: DateFormatter = {
        
@@ -85,7 +85,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     }
     
     
-    func addDoneButtonOnKeyPad() {
+    private func addDoneButtonOnKeyPad() {
         
         let keyboardToolbar = UIToolbar(frame: .init(x: 0.0, y: 0.0, width: view.frame.size.width, height: 44.0))
         let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -95,7 +95,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     }
     
     
-    func configureRoverSelectionCriteriaTextFieldDelegate() {
+    private func configureRoverSelectionCriteriaTextFieldDelegate() {
         
         roverSelectionCriteriaTextFieldDelegate = UniverseImageryTextFieldDelegate(withTextField: filterCriteriaTextField, stateHandler: { [unowned self] (state: UniverseImageryTextFieldDelegateState) -> Void in
             
@@ -124,7 +124,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     }
     
     
-    func updateTextFieldWithDateFromPicker() {
+    private func updateTextFieldWithDateFromPicker() {
         
         if filterCriteriaDatePicker != nil {
             
@@ -134,7 +134,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     }
     
     
-    func updateFilterCriteriaWithDateFromPicker() {
+    private func updateFilterCriteriaWithDateFromPicker() {
         
         if filterCriteriaDatePicker != nil {
             

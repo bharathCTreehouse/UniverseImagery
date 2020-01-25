@@ -52,9 +52,4 @@ class UniverseImageryTextFieldDelegate: NSObject, UITextFieldDelegate {
         return true
     }
 
-    
-    
-    deinit {
-        print("UniverseImageryTextFieldDelegate")
-    }
 }
