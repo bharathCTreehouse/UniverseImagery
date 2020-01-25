@@ -10,7 +10,7 @@ import UIKit
 
 class UniverseRoverCameraSelectionViewController: UIViewController {
     
-    @IBOutlet var cameraListTableView: UITableView!
+    @IBOutlet private(set) var cameraListTableView: UITableView!
     
     let selectionHandler: ((String, Int?, Bool) -> Void)
     
@@ -38,7 +38,7 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
     }
     
     
-    func configureCameraListTableView() {
+    private func configureCameraListTableView() {
         
         cameraListTableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cameraCell")
         cameraListTableView.dataSource = self
@@ -48,7 +48,7 @@ class UniverseRoverCameraSelectionViewController: UIViewController {
     }
     
     
-    func configureSelectAllButton() {
+    private func configureSelectAllButton() {
         
         let selectAllButton: UIButton = UIButton(type: .system)
         selectAllButton.frame = .init(x: 0.0, y: 0.0, width: view.frame.size.width, height: 50.0)
