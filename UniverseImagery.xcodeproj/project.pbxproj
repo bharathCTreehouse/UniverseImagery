@@ -47,6 +47,8 @@
 		8E980F8F23DC74BA00179075 /* UniverseRoverCriteriaSelectionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E980F8E23DC74BA00179075 /* UniverseRoverCriteriaSelectionViewControllerTest.swift */; };
 		8E980F9123DCC1D300179075 /* UniverseRoverCameraSelectionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E980F9023DCC1D300179075 /* UniverseRoverCameraSelectionViewControllerTest.swift */; };
 		8EA41C1423C10A8F0063BF35 /* UniverseImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */; };
+		8EA6A91123E0C4C400EDC1B4 /* UniverseEarthCriteriaSelectionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA6A91023E0C4C400EDC1B4 /* UniverseEarthCriteriaSelectionViewControllerTest.swift */; };
+		8EA6A91323E14EBE00EDC1B4 /* UniverseEarthDateSelectionViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA6A91223E14EBE00EDC1B4 /* UniverseEarthDateSelectionViewControllerTest.swift */; };
 		8EC73D2123CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */; };
 		8EC73D2323CBA131000D53DC /* UniverseImageryDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */; };
 		8ECA71E723D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */; };
@@ -115,6 +117,8 @@
 		8E980F8E23DC74BA00179075 /* UniverseRoverCriteriaSelectionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCriteriaSelectionViewControllerTest.swift; sourceTree = "<group>"; };
 		8E980F9023DCC1D300179075 /* UniverseRoverCameraSelectionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseRoverCameraSelectionViewControllerTest.swift; sourceTree = "<group>"; };
 		8EA41C1323C10A8F0063BF35 /* UniverseImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageAPI.swift; sourceTree = "<group>"; };
+		8EA6A91023E0C4C400EDC1B4 /* UniverseEarthCriteriaSelectionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthCriteriaSelectionViewControllerTest.swift; sourceTree = "<group>"; };
+		8EA6A91223E14EBE00EDC1B4 /* UniverseEarthDateSelectionViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseEarthDateSelectionViewControllerTest.swift; sourceTree = "<group>"; };
 		8EC73D2023CB9758000D53DC /* UniverseImageryTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryTextFieldDelegate.swift; sourceTree = "<group>"; };
 		8EC73D2223CBA131000D53DC /* UniverseImageryDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryDatePicker.swift; sourceTree = "<group>"; };
 		8ECA71E623D039BF004DC5CA /* UniverseImageryLoadMoreButtonCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniverseImageryLoadMoreButtonCollectionView.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				8E980F8C23DC709200179075 /* UniverseRoverCameraTest.swift */,
 				8E980F8E23DC74BA00179075 /* UniverseRoverCriteriaSelectionViewControllerTest.swift */,
 				8E980F9023DCC1D300179075 /* UniverseRoverCameraSelectionViewControllerTest.swift */,
+				8EA6A91023E0C4C400EDC1B4 /* UniverseEarthCriteriaSelectionViewControllerTest.swift */,
+				8EA6A91223E14EBE00EDC1B4 /* UniverseEarthDateSelectionViewControllerTest.swift */,
 			);
 			path = UniverseImageryTests;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EA6A91123E0C4C400EDC1B4 /* UniverseEarthCriteriaSelectionViewControllerTest.swift in Sources */,
 				8E980F8F23DC74BA00179075 /* UniverseRoverCriteriaSelectionViewControllerTest.swift in Sources */,
 				8E980F8B23DC6B8E00179075 /* UniverseImageryEndpointTest.swift in Sources */,
 				8E980F8D23DC709200179075 /* UniverseRoverCameraTest.swift in Sources */,
@@ -546,6 +553,7 @@
 				8E7BEC4323BFCBD4004D14A2 /* UniverseImageryLandingViewControllerTest.swift in Sources */,
 				8E980F8723DC663800179075 /* UniverseImageryEarthDataTest.swift in Sources */,
 				8E980F9123DCC1D300179075 /* UniverseRoverCameraSelectionViewControllerTest.swift in Sources */,
+				8EA6A91323E14EBE00EDC1B4 /* UniverseEarthDateSelectionViewControllerTest.swift in Sources */,
 				8E980F8223DC610E00179075 /* UniverseImagerySampleJSONReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

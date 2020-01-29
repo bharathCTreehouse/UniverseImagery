@@ -11,8 +11,8 @@ import MapKit
 
 class UniverseEarthCriteriaSelectionViewController: UIViewController {
 
-    @IBOutlet weak var locationListTableView: UITableView!
-    @IBOutlet weak var locationSearchBar: UISearchBar!
+    @IBOutlet weak private(set) var locationListTableView: UITableView!
+    @IBOutlet weak private(set) var locationSearchBar: UISearchBar!
     private var localSearch: MKLocalSearch? = nil
     lazy var earthLocationViewModels: [UniverseEarthLocationInfoViewModel] = {
        return []

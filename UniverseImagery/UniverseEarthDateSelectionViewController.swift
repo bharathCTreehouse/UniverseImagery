@@ -12,11 +12,11 @@ import CoreLocation
 
 class UniverseEarthDateSelectionViewController: UIViewController {
     
-    @IBOutlet weak private var dateTextField: UITextField!
-    @IBOutlet weak private var addressLabel: UILabel!
-    @IBOutlet weak private var showImageButton: UIButton!
-    @IBOutlet weak private var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak private var fetchingStatusTextLabel: UILabel!
+    @IBOutlet weak private(set) var dateTextField: UITextField!
+    @IBOutlet weak private(set) var addressLabel: UILabel!
+    @IBOutlet weak private(set) var showImageButton: UIButton!
+    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak private(set) var fetchingStatusTextLabel: UILabel!
 
 
     let locationCoordinate: CLLocationCoordinate2D
