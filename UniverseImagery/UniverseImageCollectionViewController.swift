@@ -53,6 +53,13 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     
     let loadMoreHandler: (() -> Void)
     
+    var loadMoreState: UniverseImageryLoadMoreViewState = .notStarted {
+        
+        didSet {
+            updateLoadMoreViewState()
+        }
+    }
+    
     
     required init(withImageViewModels viewModels: [UniverseImageViewModel], loadMoreTapHandler: @escaping () -> Void ) {
         
@@ -68,7 +75,7 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     
     func addImageViewModels(fromList list: [UniverseImageViewModel]) {
         
-        updateLoadMoreViewState(to: .finished)
+        loadMoreState = .finished
         if list.isEmpty == false {
             let filteredList: [UniverseImageViewModel] = list.imageViewModelsWithoutImage()
             imageViewModels.append(contentsOf: filteredList)
@@ -208,11 +215,10 @@ extension UniverseImageCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let loadMoreView: UniverseImageryLoadMoreButtonCollectionView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView", for: indexPath) as! UniverseImageryLoadMoreButtonCollectionView
-        
+        loadMoreView.changeCurrentState(to: loadMoreState)
         loadMoreView.viewDelegate = self
         
         return loadMoreView
-
     }
 
 }
@@ -221,7 +227,6 @@ extension UniverseImageCollectionViewController {
 extension UniverseImageCollectionViewController {
     
     // MARK: UICollectionViewDelegate
-    
     
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
@@ -245,15 +250,17 @@ extension UniverseImageCollectionViewController: UniverseImageryLoadMoreButtonCo
     
     
     func reactToLoadMoreButtonTap() {
-        updateLoadMoreViewState(to: .inProgress)
+        loadMoreState = .inProgress
         loadMoreHandler()
     }
     
     
-    func updateLoadMoreViewState(to state: UniverseImageryLoadMoreViewState) {
+    func updateLoadMoreViewState() {
         
-        let loadMoreFooterView: UniverseImageryLoadMoreButtonCollectionView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath.init(row: 0, section: 0)) as! UniverseImageryLoadMoreButtonCollectionView
+        let indexPath: IndexPath = IndexPath.init(row: 0, section: 0)
         
-        loadMoreFooterView.changeCurrentState(to: state)
+        let loadMoreFooterView: UniverseImageryLoadMoreButtonCollectionView? = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: indexPath) as? UniverseImageryLoadMoreButtonCollectionView
+        
+        loadMoreFooterView?.changeCurrentState(to: loadMoreState)
     }
 }

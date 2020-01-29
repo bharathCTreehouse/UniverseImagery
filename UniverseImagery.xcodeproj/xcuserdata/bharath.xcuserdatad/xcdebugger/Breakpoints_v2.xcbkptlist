@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DF1C1243-0ED2-4DC5-BC90-F1A7520CD860"
+            uuid = "590447D6-38AD-489D-B015-8A9441FD0ABC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UniverseImagery/UniverseImageCollectionViewController.swift"
+            filePath = "UniverseImagery/UniverseImageEmailConfigurer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "configureEmail()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3FCE4A4B-7939-484E-97FA-EC8351267B0F"
+            uuid = "D3FECC2C-6DF9-4138-9883-29664BD99687"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UniverseImagery/UniverseRoverCriteriaSelectionViewController.swift"
+            filePath = "UniverseImagery/UniverseImageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "fetchRoverImageData(showActivityIndicator:)"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "sendEmailWithPostCardImage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67581352-305E-441A-9D93-2F9AD435AD6A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UniverseImagery/UniverseImageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "sendEmailWithPostCardImage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
