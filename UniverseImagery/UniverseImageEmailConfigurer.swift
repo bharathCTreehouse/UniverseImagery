@@ -59,7 +59,7 @@ class UniverseImageEmailConfigurer: NSObject, MFMailComposeViewControllerDelegat
             emailConfigurationCompletionHandler(nil)
         }
         else {
-            
+            //Set properties on the mail compose controller using data from the data source.
             let mailComposeVC: MFMailComposeViewController = MFMailComposeViewController()
             mailComposeVC.mailComposeDelegate = self
             mailComposeVC.setToRecipients(emailDataSource.toAddresses)

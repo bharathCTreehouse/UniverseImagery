@@ -57,11 +57,18 @@ extension UniverseEarthCriteriaSelectionViewController: UISearchBarDelegate {
         localSearch!.start { [unowned self] (searchResponse, searchError) in
             
             if let error = searchError {
+                
+                //Search failed.
+                
                 self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
             }
             else if let response = searchResponse {
                 
+                //Search went through successfully.
+                
                 let searchResultMapItems: [MKMapItem] = response.mapItems
+                
+                //Process the search results.
                 
                 for mapItem in searchResultMapItems {
                     

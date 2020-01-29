@@ -73,7 +73,11 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        
+        //Reset the page count to 1 when the screen appears
         pageCount = 1
+        
+        //Cancel any running fetch task
         cancelCurrentRoverImageFetchTask()
     }
     
@@ -103,7 +107,11 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
                 
             case .editingDidEnd:
                 
+                //Editing has ended.
+                
                 if self.filterCriteriaSegmentControl.selectedSegmentIndex == UniverseRoverFilter.sol.rawValue {
+                    
+                    //Update filter criteria with user selected SOL.
                     
                     let solValue: UInt? = UInt(self.filterCriteriaTextField.text ?? "")
                     if let solValue = solValue {
@@ -112,6 +120,8 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
                 }
                 else if self.filterCriteriaSegmentControl.selectedSegmentIndex == UniverseRoverFilter.earthDate.rawValue {
                     
+                    //Update filter criteria with user selected date.
+
                     self.updateTextFieldWithDateFromPicker()
                     self.updateFilterCriteriaWithDateFromPicker()
                 }
@@ -128,6 +138,7 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         
         if filterCriteriaDatePicker != nil {
             
+            //Format and show the date selected on the text field.
             let dateSelected: Date = filterCriteriaDatePicker!.date
             filterCriteriaTextField.text = dateFormatterForDisplay.string(from: dateSelected)
         }
@@ -138,6 +149,8 @@ class UniverseRoverCriteriaSelectionViewController: UIViewController {
         
         if filterCriteriaDatePicker != nil {
             
+            //Date selected, formatted as per the needs of the API.
+
             let dateSelected: Date = filterCriteriaDatePicker!.date
             let df: DateFormatter = DateFormatter()
             df.dateFormat = UniverseRoverCameraCriteria.earthDateFormat
@@ -232,6 +245,16 @@ extension UniverseRoverCriteriaSelectionViewController {
         
         let apiClient: UniverseImageAPI = UniverseImageAPI()
         
+        if filterCriteria != nil {
+            
+            //Filter criteria has been entered.
+            
+            if filterCriteriaTextField.text == nil || filterCriteriaTextField.text?.isEmpty == true {
+                //No text present in the text field. So nil out the filter criteria.
+                filterCriteria = nil
+            }
+        }
+        
         var roverEndPoint: UniverseImageryEndpoint = .fetchRoverImage(page: pageCount, fetchCriteria: filterCriteria, cameraType: cameraType)
 
         if filterCriteriaActivationSwitch.isOn == false {
@@ -251,10 +274,11 @@ extension UniverseRoverCriteriaSelectionViewController {
                 if let error = error {
                     
                     if error.causedByAPICancellation == false {
-                        
+                        //Error not caused by API cancellation. So display the alert.
                         self.showAlert(withTitle: error.localizedDescription, alertMessage: nil, cancelActionTitle: nil, defaultActionTitles: ["OK"], destructiveActionTitles: nil, actionTapHandler: nil)
                     }
                     else {
+                        //Error caused by a user initiated API cancellation.
                         //No further execution required.
                         return
                     }

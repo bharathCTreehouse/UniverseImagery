@@ -14,15 +14,6 @@ class UniverseImageryLandingViewController: UIViewController {
     @IBOutlet private(set) var earthImagesButton: UIButton!
 
 
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-       
-    }
-    
-    
     @IBAction func marsImageButtonTapped(_ sender: UIButton) {
         let roverCriteriaSelectionController: UniverseRoverCriteriaSelectionViewController = UniverseRoverCriteriaSelectionViewController()
         navigationController?.pushViewController(roverCriteriaSelectionController, animated: true)

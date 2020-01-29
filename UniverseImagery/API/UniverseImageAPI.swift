@@ -40,6 +40,7 @@ class UniverseImageAPI {
         let urlReq: URLRequest? = endPoint.urlRequest
         
         guard let request = urlReq else {
+            //URL is not valid. So return immediately.
             handler(nil, UniverseImageAPIError.invalidURL)
             return nil
         }
@@ -98,6 +99,7 @@ class UniverseImageAPI {
         let urlReq: URLRequest? = endPoint.urlRequest
         
         guard let request = urlReq else {
+            //URL is not valid. So return immediately.
             handler(nil, UniverseImageAPIError.invalidURL)
             return nil
         }

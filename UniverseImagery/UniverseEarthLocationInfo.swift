@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-
+//Local search results are converted into 'UniverseEarthLocationInfo' objects.
 struct UniverseEarthLocationInfo {
     
     let locationName: String?

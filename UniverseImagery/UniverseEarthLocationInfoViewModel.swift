@@ -21,11 +21,15 @@ class UniverseEarthLocationInfoViewModel {
     
     lazy var locationNameDisplayableDetail: (text: String, font: UIFont, color: UIColor) = {
         
+        //Formatted location name
+        
         return (text: locationInfo.locationName ?? "", font: UIFont.boldSystemFont(ofSize: 20.0), color: UIColor.white)
     }()
     
     
     lazy var addressDisplayableDetail: (text: String, font: UIFont, color: UIColor) = {
+        
+        //Formatted address
         
         var addressString: String = ""
         

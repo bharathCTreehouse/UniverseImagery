@@ -57,10 +57,12 @@ class UniverseImageViewController: UIViewController {
         
         if let currentContext = UIGraphicsGetCurrentContext() {
             
+            //Form new image with the post card text.
             view.layer.render(in: currentContext)
             postCardImage = UIGraphicsGetImageFromCurrentImageContext()
             
             if postCardImage != nil {
+                //New image creation successful.
                 sendEmailWithPostCardImage()
             }
             else {

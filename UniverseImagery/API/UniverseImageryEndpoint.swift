@@ -42,12 +42,12 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                 //Fetch based on sol or earth date
                 if criteria != nil {
                     switch criteria! {
-                    case .sol(let solValue):
-                        let solQItem = URLQueryItem(name: "sol", value: "\(solValue)")
-                        allQueryItems.append(solQItem)
-                    case .earthDate(let dateStringValue):
-                        let earthDateQItem = URLQueryItem(name: "earth_date", value: dateStringValue)
-                        allQueryItems.append(earthDateQItem)
+                        case .sol(let solValue):
+                            let solQItem = URLQueryItem(name: "sol", value: "\(solValue)")
+                            allQueryItems.append(solQItem)
+                        case .earthDate(let dateStringValue):
+                            let earthDateQItem = URLQueryItem(name: "earth_date", value: dateStringValue)
+                            allQueryItems.append(earthDateQItem)
                     }
                 }
                 //Include camera type
@@ -57,22 +57,22 @@ enum UniverseImageryEndpoint: UniverseImageryUrlCreator {
                 }
             
             
-        case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr):
+            case .fetchEarthImage(latitude: let lat, longitude: let longi, date: let dateStr):
                 
+                //Add latitude.
                 let latQueryItem: URLQueryItem = URLQueryItem(name: "lat", value: "\(lat)")
                 allQueryItems.append(latQueryItem)
             
+                //Add longitude.
                 let longiQueryItem: URLQueryItem = URLQueryItem(name: "lon", value: "\(longi)")
                 allQueryItems.append(longiQueryItem)
                 
+                //Add data if supplied.
                 if let dateStr = dateStr {
                     let dateQueryItem: URLQueryItem = URLQueryItem(name: "date", value: dateStr)
                     allQueryItems.append(dateQueryItem)
                 }
                 
-               
-
-            
             default: break
         }
         

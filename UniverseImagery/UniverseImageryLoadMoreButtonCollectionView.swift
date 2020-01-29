@@ -25,10 +25,12 @@ class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
         
         didSet {
             if currentState == .inProgress {
+                //Begin animating the activity indicator when loading is in progress.
                 activityIndicatorView.startAnimating()
                 loadMoreButton.isEnabled = false
             }
             else {
+                //Stop animating when loading is finished.
                 activityIndicatorView.stopAnimating()
                 loadMoreButton.isEnabled = true
             }

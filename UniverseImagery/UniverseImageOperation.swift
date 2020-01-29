@@ -27,6 +27,7 @@ class UniverseImageOperation: Operation {
         completionHandler = handler
         uniqueIdentifier = id
         
+        //If the URL is not secure, update it with HTTPS.
         if imageUrl.absoluteString.contains("https") == false {
             let tempUrlString = imageUrl.absoluteString.replacingOccurrences(of: "http", with: "https")
             imageUrl = URL(string: tempUrlString)!
@@ -37,6 +38,7 @@ class UniverseImageOperation: Operation {
     override func main() {
         
         if isCancelled == true {
+            //The operation has been cancelled. So do not process further. Just return with the completion handler.
             completionHandler(nil, uniqueIdentifier, nil, true)
         }
         do {
@@ -46,12 +48,13 @@ class UniverseImageOperation: Operation {
                 completionHandler(nil, uniqueIdentifier, nil, true)
             }
             else if imageData.isEmpty == false {
-                print(imageData)
                 let image: UIImage? = UIImage(data: imageData)
                 if let image = image {
+                    //Image processed and parsed successfully.
                     completionHandler(image, uniqueIdentifier, nil, isCancelled)
                 }
                 else {
+                    //Image could not be read. Call the handler with an appropriate error.
                     completionHandler(image, uniqueIdentifier, UniverseImageOperationError.invalidImageData, isCancelled)
                 }
             }
@@ -61,6 +64,7 @@ class UniverseImageOperation: Operation {
             }
         }
         catch (let error) {
+            //Could not download image from the URL.
             completionHandler(nil, uniqueIdentifier, error, isCancelled)
         }
     }

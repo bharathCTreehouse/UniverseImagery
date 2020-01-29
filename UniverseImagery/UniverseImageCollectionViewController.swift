@@ -87,6 +87,8 @@ class UniverseImageCollectionViewController: UICollectionViewController {
         
         if imageViewModels.isEmpty == false {
             
+            //Only when there are images in the collection view controller, configure and setup the 'load more' button footer view.
+            
             collectionView!.register(UniverseImageryLoadMoreButtonCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "loadMoreView")
             
             (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).footerReferenceSize = CGSize(width: collectionView.frame.size.width, height: 60.0)
@@ -98,13 +100,19 @@ class UniverseImageCollectionViewController: UICollectionViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
+        
+        //Filter out image view models whose images haven't yet been fetched.
         imageViewModels = imageViewModels.imageViewModelsWithoutImage()
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(animated)
+        
+        //Cancell all pending image operations since we are exiting the screen.
         imageDownloadingQueue?.cancelAllOperations()
         imageDownloadingQueue = nil
     }
@@ -124,6 +132,7 @@ class UniverseImageCollectionViewController: UICollectionViewController {
             let imgOperation: UniverseImageOperation = UniverseImageOperation(withImageUrl: url, uniqueIdentifier: "\(index)", completionHandler: { [unowned self] (img: UIImage?, identifier: String?, err: Error?, cancelled: Bool) -> Void in
                 
                 if cancelled == true {
+                    //Do nothing since the operation has been cancelled.
                     return
                 }
                 if let img = img {
@@ -132,9 +141,11 @@ class UniverseImageCollectionViewController: UICollectionViewController {
                     
                     if let index = index {
                         
+                        //Update the view model with downloaded image.
                         let viewModel = self.imageViewModels[index]
                         viewModel.updateImage(with: img)
                         
+                        //UI update
                         DispatchQueue.main.async {
                             
                             let idxPath: IndexPath = IndexPath.init(row: index, section: 0)
