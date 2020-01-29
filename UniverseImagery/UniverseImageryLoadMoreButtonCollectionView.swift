@@ -35,8 +35,8 @@ class UniverseImageryLoadMoreButtonCollectionView: UICollectionReusableView {
         }
     }
     
-    var activityIndicatorView: UIActivityIndicatorView! = nil
-    var loadMoreButton: UIButton! = nil
+    private(set) var activityIndicatorView: UIActivityIndicatorView! = nil
+    private(set) var loadMoreButton: UIButton! = nil
     weak var viewDelegate: UniverseImageryLoadMoreButtonCollectionViewDelegate? = nil
     
     

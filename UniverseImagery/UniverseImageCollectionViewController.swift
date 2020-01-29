@@ -49,7 +49,7 @@ class UniverseImageCollectionViewController: UICollectionViewController {
         }
     }
     
-    private var imageDownloadingQueue: OperationQueue? = nil
+    private(set) var imageDownloadingQueue: OperationQueue? = nil
     
     let loadMoreHandler: (() -> Void)
     

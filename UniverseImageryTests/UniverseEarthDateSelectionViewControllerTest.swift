@@ -21,6 +21,7 @@ class UniverseEarthDateSelectionViewControllerTest: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        vc = nil
     }
     
     func testInitializer() {
@@ -29,7 +30,6 @@ class UniverseEarthDateSelectionViewControllerTest: XCTestCase {
         XCTAssertTrue(vc.locationCoordinate.latitude == 1.0)
         XCTAssertTrue(vc.locationCoordinate.longitude == 5.0)
     }
-    
     
     func testConfigurationOfDateTextFieldDelegate() {
         
@@ -56,15 +56,12 @@ class UniverseEarthDateSelectionViewControllerTest: XCTestCase {
         
     }
     
-    
     func testClearButtonTapped() {
         
         //Under test
         vc.clearButtonTapped(UIBarButtonItem())
         XCTAssertNil(vc.selectedDate)
     }
-    
-    
     
     func testDoneButtonTapped() {
         
@@ -73,7 +70,6 @@ class UniverseEarthDateSelectionViewControllerTest: XCTestCase {
         XCTAssertNotNil(vc.selectedDate)
         XCTAssertNotNil(vc.dateTextField.text)
     }
-    
     
     func testDateStringForEndpoint() {
         

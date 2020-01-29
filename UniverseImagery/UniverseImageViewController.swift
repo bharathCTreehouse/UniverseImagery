@@ -11,8 +11,8 @@ import MessageUI
 
 class UniverseImageViewController: UIViewController {
     
-    @IBOutlet weak var universeImageView: UIImageView!
-    @IBOutlet weak var postCardTextLabel: UILabel!
+    @IBOutlet weak private(set) var universeImageView: UIImageView!
+    @IBOutlet weak private(set) var postCardTextLabel: UILabel!
     var emailConfigurer: UniverseImageEmailConfigurer! = nil
 
     let universeImage: UIImage
